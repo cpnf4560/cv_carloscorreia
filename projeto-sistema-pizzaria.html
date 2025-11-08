@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sistema de Encomendas – Pizzaria | Carlos Correia</title>
+  <meta name="description" content="Sistema de Encomendas para Pizzaria: gestão de clientes e pedidos, JWT, i18n e painel admin. Galeria com slides para ~25 screenshots." />
+  <link rel="icon" type="image/png" href="Imagens/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#2c5f7c;--accent2:#4aa3d3;--bg:#eef3f8;--radius:16px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins','Segoe UI',Tahoma,sans-serif;background:var(--bg);color:#222;line-height:1.55}
+    header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:40px 28px 80px;position:relative}
+    .top-links{position:absolute;top:12px;right:14px;display:flex;gap:8px;z-index:10}
+    .top-links a{font-size:11px;padding:6px 10px;background:rgba(255,255,255,.85);color:var(--accent);border-radius:6px;text-decoration:none;border:1px solid #d0dee7;backdrop-filter:blur(4px)}
+    .top-links a:hover{background:var(--accent2);color:#fff}
+    h1{font-size:38px}
+    .badge{display:inline-block;margin-top:10px;background:#fff;color:var(--accent);border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700}    .hero{max-width:1100px;margin:-52px auto 20px;background:#fff;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.12);overflow:hidden}
+    .hero figure{margin:0 auto;max-width:400px;aspect-ratio:16/9;background:#000;position:relative}
+    .hero img{width:100%;height:100%;object-fit:cover}
+    .hero .quick{position:absolute;top:10px;right:10px;display:flex;gap:6px}
+    .hero .quick a{background:rgba(255,255,255,.95);color:var(--accent);padding:6px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700;border:1px solid rgba(0,0,0,.25);box-shadow:0 2px 6px rgba(0,0,0,.25)}
+    main{max-width:1100px;margin:0 auto 70px;background:#fff;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.12);padding:26px 26px}
+    .grid{display:grid;gap:26px;grid-template-columns:1.2fr .8fr}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    h2{font-size:20px;color:var(--accent);margin:6px 0 12px}
+    p{margin:0 0 10px;text-align:justify;hyphens:auto}
+    ul{padding-left:18px}
+    .panel{border:1px solid #dde7ef;border-radius:12px;padding:14px;background:#fafcff}
+    footer{margin:36px 0 18px;text-align:center;font-size:12px;color:#666}
+    footer a{color:var(--accent)}
+
+    /* Slider simples e leve, sem dependências */
+    .slider{position:relative;border-radius:12px;overflow:hidden;border:1px solid #d2dde6;background:#000}
+    .slides{display:flex;scroll-snap-type:x mandatory;overflow-x:auto;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+    .slides::-webkit-scrollbar{display:none}
+    .slides img{flex:0 0 100%;width:100%;height:auto;object-fit:contain;background:#000;scroll-snap-align:start}
+    .nav-dots{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+    .nav-dots button{width:10px;height:10px;border-radius:50%;border:1px solid rgba(0,0,0,.35);background:#fff;cursor:pointer}
+    .nav-dots button.active{background:var(--accent2);border-color:var(--accent2)}
+    .slider .arrows{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 6px}
+    .slider .arrows button{background:rgba(255,255,255,.85);border:1px solid rgba(0,0,0,.25);box-shadow:0 2px 6px rgba(0,0,0,.25);color:var(--accent);font-weight:800;width:34px;height:34px;border-radius:50%;cursor:pointer}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-links" aria-label="Navegação"><a href="cv-carlos-correia.html">← CV</a><a href="projetos_programacao.html">Projetos</a></div>
+    <h1>Sistema de Encomendas – Pizzaria</h1>
+    <span class="badge">Node.js • Express • PostgreSQL/MySQL • HTML/CSS/JS</span>
+  </header>
+
+  <section class="hero" aria-label="Capa do projeto">
+    <figure><div class="quick"><a href="#" aria-disabled="true" title="Demo pública em breve">🚀 Demo</a><a href="https://github.com/cpnf4560/sistema_pizzaria" target="_blank" rel="noopener">🔗 Repo</a></div><img src="Imagens/pizzaria.png" alt="Screenshot Pizzaria"></figure>
+  </section>
+
+  <main role="main">
+    <div class="grid">      <section class="panel" aria-labelledby="desc-title">
+        <h2 id="desc-title">Descrição</h2>
+        <p>Sistema completo de gestão de pizzaria desenvolvido em full stack: backend Node.js/Express com API REST, frontend HTML/CSS/JavaScript moderno, PostgreSQL/MySQL com transações, e autenticação JWT + bcrypt + SHA-256. Interface bilingue (PT/EN) com tradução dinâmica client-side.</p>
+        <p><strong>Destaques:</strong> Login com email ou username, histórico pessoal de encomendas, carrinho de compras com cálculo automático, validações frontend e backend, taxa de entrega condicional, painel admin com estatísticas (total encomendas, clientes, pizzas vendidas, clientes ativos), fallback para dados seed se API falhar.</p>
+        <p><strong>Componente Java (legado UFCD 10790):</strong> Sistema CRUD Swing com relatórios (clientes frequentes, pizzas vendidas, faturação por dia). Abaixo, galeria com ~25 screenshots incluindo SQL schema.</p>
+        <div class="slider" id="galeria">
+          <div class="arrows">
+            <button type="button" aria-label="Anterior" onclick="prevSlide()">‹</button>
+            <button type="button" aria-label="Seguinte" onclick="nextSlide()">›</button>
+          </div>
+          <div class="slides" id="slides"></div>
+          <div class="nav-dots" id="dots" aria-label="Navegação por slides"></div>
+        </div>
+      </section>      <aside class="panel" aria-labelledby="stack-title">
+        <h2 id="stack-title">Stack & Links</h2>
+        <ul>
+          <li><strong>Backend:</strong> Node.js, Express, PostgreSQL/MySQL</li>
+          <li><strong>Segurança:</strong> JWT, bcrypt, SHA-256, helmet, rate-limit</li>
+          <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript ES6, Python HTTP Server</li>
+          <li><strong>Deploy:</strong> Separado (Backend 3000, Frontend 8080)</li>
+          <li><strong>Java (UFCD 10790):</strong> Swing CRUD + Relatórios</li>
+          <li><a href="https://github.com/cpnf4560/sistema_pizzaria" target="_blank" rel="noopener">Repositório</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer><p>© 2025 Carlos Correia • <a href="cv-carlos-correia.html">CV</a></p></footer>
+
+  <script>
+    // Slider minimalista: inicializa dots conforme número de imagens
+    const slides = document.getElementById('slides');
+    const dots = document.getElementById('dots');
+    const pizzariaShots = [
+      {file:'Imagens/Screenshots Pizzaria/1.png', alt:'Dashboard inicial'},
+      {file:'Imagens/Screenshots Pizzaria/2.png', alt:'Lista de clientes'},
+      {file:'Imagens/Screenshots Pizzaria/3.png', alt:'Detalhe de cliente'},
+      {file:'Imagens/Screenshots Pizzaria/4.png', alt:'Criação de encomenda'},
+      {file:'Imagens/Screenshots Pizzaria/5.png', alt:'Gestão de produtos e pizzas'},
+      {file:'Imagens/Screenshots Pizzaria/6.png', alt:'Tradução i18n PT-EN'},
+      {file:'Imagens/Screenshots Pizzaria/7.png', alt:'Autenticação e login'},
+      {file:'Imagens/Screenshots Pizzaria/8.png', alt:'Painel administrativo estatísticas'},
+      {file:'Imagens/Screenshots Pizzaria/9.png', alt:'Gestão de utilizadores'},
+      {file:'Imagens/Screenshots Pizzaria/10.png', alt:'Histórico de encomendas'},
+      {file:'Imagens/Screenshots Pizzaria/11.png', alt:'Detalhe estatístico'},
+      {file:'Imagens/Screenshots Pizzaria/12.png', alt:'Confirmar encomenda'},
+      {file:'Imagens/Screenshots Pizzaria/13.png', alt:'Interface edição de produto'},
+      {file:'Imagens/Screenshots Pizzaria/15.png', alt:'Relatórios de vendas'},
+      {file:'Imagens/Screenshots Pizzaria/16.png', alt:'Gráfico de encomendas'},
+      {file:'Imagens/Screenshots Pizzaria/17 - Inglês.png', alt:'Interface em inglês'},
+      {file:'Imagens/Screenshots Pizzaria/18 - Confirmar para sair.png', alt:'Popup confirmação saída'},
+      {file:'Imagens/Screenshots Pizzaria/19 - Historico de encomendas.png', alt:'Histórico de encomendas detalhado'},
+      {file:'Imagens/Screenshots Pizzaria/logo.png', alt:'Logotipo aplicação'},
+      {file:'Imagens/Screenshots Pizzaria/SQL - Clientes.png', alt:'Tabela SQL clientes'},
+      {file:'Imagens/Screenshots Pizzaria/SQL - Encomendas.png', alt:'Tabela SQL encomendas'},
+      {file:'Imagens/Screenshots Pizzaria/SQL - Pizzas.png', alt:'Tabela SQL pizzas'},
+      {file:'Imagens/Screenshots Pizzaria/SQL - Utilizadores.png', alt:'Tabela SQL utilizadores'},
+      {file:'Imagens/Screenshots Pizzaria/Tabelas SQL.png', alt:'Diagrama conjunto de tabelas'}
+    ];
+    // Injetar imagens
+    pizzariaShots.forEach(s=>{
+      const img = new Image();
+      img.src = s.file; img.alt = s.alt; img.loading = 'lazy';
+      slides.appendChild(img);
+    });
+    function refreshDots(){
+      dots.innerHTML = '';
+      const imgs = slides.querySelectorAll('img');
+      imgs.forEach((_,i)=>{
+        const b = document.createElement('button');
+        b.addEventListener('click',()=> slides.scrollTo({left:slides.clientWidth*i,behavior:'smooth'}));
+        dots.appendChild(b);
+      });
+      updateActiveDot();
+    }
+    function updateActiveDot(){
+      const i = Math.round(slides.scrollLeft / slides.clientWidth);
+      dots.querySelectorAll('button').forEach((b,idx)=> b.classList.toggle('active', idx===i));
+    }
+    function prevSlide(){ slides.scrollBy({left:-slides.clientWidth,behavior:'smooth'}); }
+    function nextSlide(){ slides.scrollBy({left: slides.clientWidth,behavior:'smooth'}); }
+    slides.addEventListener('scroll', ()=> requestAnimationFrame(updateActiveDot));
+    window.addEventListener('load', refreshDots);
+  </script>
+</body>
+</html>
+``` 

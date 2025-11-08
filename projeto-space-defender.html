@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Space Defender – Projeto | Carlos Correia</title>
+  <meta name="description" content="Space Defender: jogo 2D em C++/SDL2. Arquitetura modular, colisões, áudio e highscore. Vídeo demo e repositório." />
+  <link rel="icon" type="image/png" href="Imagens/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#2c5f7c;--accent2:#4aa3d3;--bg:#eef3f8;--radius:16px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins','Segoe UI',Tahoma,sans-serif;background:var(--bg);color:#222;line-height:1.55}
+    header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:40px 28px 80px;position:relative}
+    .top-links{position:absolute;top:12px;right:14px;display:flex;gap:8px;z-index:10}
+    .top-links a{font-size:11px;padding:6px 10px;background:rgba(255,255,255,.85);color:var(--accent);border-radius:6px;text-decoration:none;border:1px solid #d0dee7;backdrop-filter:blur(4px)}
+    .top-links a:hover{background:var(--accent2);color:#fff}
+    h1{font-size:38px}
+    .badge{display:inline-block;margin-top:10px;background:#fff;color:var(--accent);border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700}    .hero{max-width:1100px;margin:-52px auto 20px;background:#fff;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.12);overflow:hidden}
+    .hero figure{margin:0 auto;max-width:400px;aspect-ratio:16/9;background:#000;position:relative}
+    .hero img{width:100%;height:100%;object-fit:contain;background:#000}
+    .hero .quick{position:absolute;top:10px;right:10px;display:flex;gap:6px}
+    .hero .quick a{background:rgba(255,255,255,.95);color:var(--accent);padding:6px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700;border:1px solid rgba(0,0,0,.25);box-shadow:0 2px 6px rgba(0,0,0,.25)}
+    main{max-width:1100px;margin:0 auto 70px;background:#fff;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.12);padding:26px 26px}
+    .grid{display:grid;gap:26px;grid-template-columns:1.2fr .8fr}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    h2{font-size:20px;color:var(--accent);margin:6px 0 12px}
+    p{margin:0 0 10px;text-align:justify;hyphens:auto}
+    ul{padding-left:18px}
+    .panel{border:1px solid #dde7ef;border-radius:12px;padding:14px;background:#fafcff}
+    footer{margin:36px 0 18px;text-align:center;font-size:12px;color:#666}
+    footer a{color:var(--accent)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-links" aria-label="Navegação"><a href="cv-carlos-correia.html">← CV</a><a href="projetos_programacao.html">Projetos</a></div>
+    <h1>Space Defender – MiniGfx SDL2</h1>
+    <span class="badge">C++17 • SDL2 • SDL_mixer • SDL_image</span>
+  </header>
+
+  <section class="hero" aria-label="Capa do projeto">
+    <figure><div class="quick"><a href="https://youtu.be/0URm-pwDgD4" target="_blank" rel="noopener">🎥 Vídeo</a><a href="https://github.com/cpnf4560/MiniGfx_SDL2" target="_blank" rel="noopener">🔗 Repo</a></div><img src="Imagens/minigfx.png" alt="Screenshot do Space Defender"></figure>
+  </section>
+
+  <main role="main">
+    <div class="grid">      <section class="panel" aria-labelledby="desc-title">
+        <h2 id="desc-title">Descrição</h2>
+        <p>Jogo arcade 2D desenvolvido em C++ com SDL2, apresentando arquitetura modular (GameManager singleton, hierarquia GameObjects) e sistema de velocidade dinâmica que aumenta com o score. Três personagens jogáveis com animações, músicas e texturas próprias.</p>
+        <p><strong>Destaques:</strong> Sistema de colisões píxel-perfeito, gestão de estados (Menu, Seleção, Jogo, GameOver), fullscreen scaling mantendo aspect ratio, highscore persistente em ficheiro, e múltiplas texturas (fundos, inimigos, vidas) por personagem.</p>
+        <p><strong>Arquitetura:</strong> Separação clara entre lógica (Game.cpp/h, GameManager) e objetos (Player, Enemy, Bullet, Heart), com renderização otimizada e controlo de framerate.</p>
+      </section>
+      <aside class="panel" aria-labelledby="stack-title">
+        <h2 id="stack-title">Stack & Links</h2>
+        <ul>
+          <li>C++17, SDL2, SDL_mixer, SDL_image</li>
+          <li><a href="https://youtu.be/0URm-pwDgD4" target="_blank" rel="noopener">Vídeo</a> · <a href="https://github.com/cpnf4560/MiniGfx_SDL2" target="_blank" rel="noopener">Repositório</a></li>
+        </ul>
+      </aside>      <section class="panel" aria-labelledby="feat-title">
+        <h2 id="feat-title">Funcionalidades</h2>
+        <ul>
+          <li><strong>Gameplay:</strong> Velocidade dinâmica (balas, inimigos, player) aumenta a cada 10 pontos</li>
+          <li><strong>Personagens:</strong> 3 opções (Trump, Carlos, Bluey) com assets exclusivos</li>
+          <li><strong>Audio:</strong> Música menu, 3 músicas jogo, SFX (hit, miss, laser, gameover)</li>
+          <li><strong>Visual:</strong> Animações hit/idle, partículas de coração, fullscreen adaptativo</li>
+          <li><strong>Persistência:</strong> Highscore guardado em ficheiro de texto</li>
+          <li><strong>Estados:</strong> Menu → Seleção → Jogo → GameOver com transições</li>
+        </ul>
+      </section>
+      <section class="panel" aria-labelledby="road-title">
+        <h2 id="road-title">Roadmap</h2>
+        <ul>
+          <li>Partículas e efeitos</li>
+          <li>Gestão de níveis e boss fights</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer><p>© 2025 Carlos Correia • <a href="cv-carlos-correia.html">CV</a></p></footer>
+</body>
+</html>

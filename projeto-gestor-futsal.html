@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gestor de Futsal – Projeto | Carlos Correia</title>
+  <meta name="description" content="Gestor de Futsal: app Node.js/Express para convocatórias, estatísticas, backups e dashboards. Detalhes técnicos, funcionalidades e roadmap." />
+  <link rel="icon" type="image/png" href="Imagens/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#2c5f7c;--accent2:#4aa3d3;--bg:#eef3f8;--radius:16px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins','Segoe UI',Tahoma,sans-serif;background:var(--bg);color:#222;line-height:1.55}
+    header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:40px 28px 80px;position:relative}
+    .top-links{position:absolute;top:12px;right:14px;display:flex;gap:8px;z-index:10}
+    .top-links a{font-size:11px;padding:6px 10px;background:rgba(255,255,255,.85);color:var(--accent);border-radius:6px;text-decoration:none;border:1px solid #d0dee7;backdrop-filter:blur(4px)}
+    .top-links a:hover{background:var(--accent2);color:#fff}
+    h1{font-size:38px}
+    .badge{display:inline-block;margin-top:10px;background:#fff;color:var(--accent);border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700}    .hero{max-width:1100px;margin:-52px auto 20px;background:#fff;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.12);overflow:hidden}
+    .hero figure{margin:0 auto;max-width:400px;aspect-ratio:16/9;background:#000;position:relative}
+    .hero img{width:100%;height:100%;object-fit:cover;background:#000}
+    .hero .quick{position:absolute;top:10px;right:10px;display:flex;gap:6px}
+    .hero .quick a{background:rgba(255,255,255,.95);color:var(--accent);padding:6px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700;border:1px solid rgba(0,0,0,.25);box-shadow:0 2px 6px rgba(0,0,0,.25)}
+    main{max-width:1100px;margin:0 auto 70px;background:#fff;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.12);padding:26px 26px}
+    .grid{display:grid;gap:26px;grid-template-columns:1.2fr .8fr}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    h2{font-size:20px;color:var(--accent);margin:6px 0 12px}
+    p{margin:0 0 10px;text-align:justify;hyphens:auto}
+    ul{padding-left:18px}
+    .panel{border:1px solid #dde7ef;border-radius:12px;padding:14px;background:#fafcff}
+    footer{margin:36px 0 18px;text-align:center;font-size:12px;color:#666}
+    footer a{color:var(--accent)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-links" aria-label="Navegação"><a href="cv-carlos-correia.html">← CV</a><a href="projetos_programacao.html">Projetos</a></div>
+    <h1>Gestor de Futsal</h1>
+    <span class="badge">Node.js • Express • EJS • SQLite/PostgreSQL</span>
+  </header>
+
+  <section class="hero" aria-label="Capa do projeto">
+    <figure><div class="quick"><a href="https://peladasquintasfeiras.onrender.com" target="_blank" rel="noopener">🚀 Live</a><a href="https://github.com/cpnf4560/peladasquintasfeiras" target="_blank" rel="noopener">🔗 Repo</a></div><img src="Imagens/gestorfutsal.png" alt="Ecrã do Gestor de Futsal"></figure>
+  </section>
+
+  <main role="main">
+    <div class="grid">      <section class="panel" aria-labelledby="desc-title">
+        <h2 id="desc-title">Descrição</h2>
+        <p>Aplicação web completa para gestão de jogos de futsal com 20 jogadores fixos. Sistema de convocatórias inteligente (10 convocados + 10 reservas), rotação automática de coletes, estatísticas detalhadas por jogador e época, e sistema de indisponíveis temporários.</p>
+        <p><strong>Destaques:</strong> Backups automatizados, análise TOP 3 por jogo, reordenação drag-and-drop, sistema de faltas, comparação de jogadores, e painel administrativo completo. Deploy em produção no Render com PostgreSQL.</p>
+        <p><strong>Métricas:</strong> ~2.500 linhas de código, 20+ ficheiros, 12 commits, 6 scripts batch de automação, documentação extensiva (START_HERE, guias específicos).</p>
+      </section>
+      <aside class="panel" aria-labelledby="stack-title">
+        <h2 id="stack-title">Stack & Links</h2>
+        <ul>
+          <li>Node.js, Express, EJS</li>
+          <li>SQLite / PostgreSQL</li>
+          <li>Deploy: Render</li>
+          <li><a href="https://peladasquintasfeiras.onrender.com" target="_blank" rel="noopener">Live</a> · <a href="https://github.com/cpnf4560/peladasquintasfeiras" target="_blank" rel="noopener">Repositório</a></li>
+        </ul>
+      </aside>      <section class="panel" aria-labelledby="feat-title">
+        <h2 id="feat-title">Funcionalidades</h2>
+        <ul>
+          <li><strong>Convocatória:</strong> 10+10, confirmações, reordenação, Config Final</li>
+          <li><strong>Coletes:</strong> Rotação automática 20 jogadores, sugestão do próximo</li>
+          <li><strong>Estatísticas:</strong> Por jogador/época, TOP 3, curiosidades</li>
+          <li><strong>Indisponíveis:</strong> Por jogos ou data, decrementação automática</li>
+          <li><strong>Backups:</strong> Download ZIP completo (8 tabelas CSV + metadata)</li>
+          <li><strong>Admin:</strong> Dashboard, gestão utilizadores, estatísticas gerais</li>
+        </ul>
+      </section>
+      <section class="panel" aria-labelledby="road-title">
+        <h2 id="road-title">Roadmap</h2>
+        <ul>
+          <li>Testes automatizados e cobertura</li>
+          <li>Melhorias de UX e acessibilidade</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer><p>© 2025 Carlos Correia • <a href="cv-carlos-correia.html">CV</a></p></footer>
+</body>
+</html>

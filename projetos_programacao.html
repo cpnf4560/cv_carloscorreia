@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projetos de Programação - Carlos Correia</title>
+  <meta name="description" content="Portfólio de projetos de programação de Carlos Correia: Java, Node.js, SDL2/C++, Frontend e Sistemas Web." />
+  <meta name="keywords" content="Carlos Correia, Projetos, Java, Node.js, C++, SDL2, HTML, CSS, JavaScript" />
+  <link rel="icon" type="image/png" href="Imagens/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --accent:#2c5f7c; --accent2:#4aa3d3; --bg:#eef3f8; --radius:16px; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Poppins','Segoe UI',Tahoma,sans-serif; background:var(--bg); color:#222; line-height:1.55; }
+    header { background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%); color:#fff; padding:40px 28px 56px; position:relative; overflow:hidden; }
+    header::after { content:""; position:absolute; inset:0; background:radial-gradient(circle at 80% 20%,rgba(255,255,255,0.25),transparent 60%); mix-blend-mode:overlay; }
+    h1 { font-size:42px; letter-spacing:.5px; margin-bottom:10px; }
+    .tagline { font-size:15px; max-width:760px; text-align:justify; hyphens:auto; }
+    nav { margin-top:22px; display:flex; gap:14px; flex-wrap:wrap; }
+    nav a { background:#fff; color:var(--accent); padding:8px 16px; font-size:13px; font-weight:600; border-radius:50px; text-decoration:none; box-shadow:0 3px 10px rgba(0,0,0,.15); transition:.3s; }
+    nav a:hover { background:var(--accent2); color:#fff; }
+
+    main { max-width:1200px; margin:-40px auto 60px; background:#fff; padding:40px 50px; border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.12); position:relative; }
+    @media (max-width:860px){ main { padding:32px 24px; margin:-60px 16px 50px; } h1{font-size:34px;} }
+
+    .grid { display:grid; gap:36px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:10px; }
+    .card { background:#fafcff; border:1px solid #dde7ef; border-radius:14px; display:flex; flex-direction:column; overflow:hidden; position:relative; box-shadow:0 4px 14px rgba(0,0,0,.06); transition:.35s; }
+    .card:hover { transform:translateY(-6px); box-shadow:0 8px 26px rgba(0,0,0,.12); }
+    .card figure { margin:0; aspect-ratio:16/9; background:linear-gradient(135deg,#d3e5f1,#c0d7e6); display:flex; align-items:center; justify-content:center; font-size:38px; color:#2c5f7c; font-weight:600; letter-spacing:.5px; position:relative; overflow:hidden; }    .card figure.letterbox { background:#000; }
+    .card figure.letterbox img { object-fit:contain; background:#000; }
+    .card img { width:100%; height:100%; object-fit:cover; display:block; }
+      /* Preview animado do jogo */
+    .game-preview { position:relative; cursor:pointer; }
+    .game-preview img { width:100%; height:100%; object-fit:contain; display:block; transition:opacity 0.3s ease; }
+    .game-preview .animated-preview { 
+      position:absolute; 
+      inset:0; 
+      opacity:0; 
+      z-index:1;
+      pointer-events:none;
+    }
+    .game-preview:hover .animated-preview { opacity:1; pointer-events:auto; }
+    .game-preview .play-overlay { 
+      position:absolute; 
+      inset:0; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      background:rgba(0,0,0,0.4); 
+      color:#fff; 
+      font-size:52px; 
+      opacity:0.8; 
+      transition:all 0.3s ease;
+      pointer-events:none;
+      z-index:2;
+      text-shadow:0 2px 8px rgba(0,0,0,0.6);
+    }
+    .game-preview:hover .play-overlay { opacity:0; transform:scale(1.2); }
+    .card figure .quick-links { position:absolute; top:8px; right:8px; display:flex; gap:4px; z-index:5; }
+    .card figure .quick-links a { background:rgba(255,255,255,0.9); color:var(--accent); padding:4px 7px; font-size:10.5px; border-radius:5px; text-decoration:none; font-weight:600; border:1px solid rgba(0,0,0,.25); box-shadow:0 2px 5px rgba(0,0,0,.28); line-height:1; }
+    .card figure .quick-links a:hover { background:linear-gradient(135deg,var(--accent2),var(--accent)); color:#fff; border-color:var(--accent2); }    .card h2 { font-size:16px; padding:16px 20px 4px; color:var(--accent); line-height:1.3; }
+    .meta { font-size:11px; font-weight:600; color:#666; padding:0 20px 8px; text-transform:uppercase; letter-spacing:.5px; }
+    .desc { font-size:13px; padding:0 20px 16px; flex:1; text-align:justify; hyphens:auto; color:#555; line-height:1.5; }
+    .stack { padding:0 20px 12px; display:flex; flex-wrap:wrap; gap:5px; }
+    .stack span { background:linear-gradient(90deg,var(--accent2),var(--accent)); color:#fff; font-size:10px; padding:4px 9px; border-radius:40px; letter-spacing:.5px; }
+    .actions { display:flex; gap:8px; padding:0 20px 18px; flex-wrap:wrap; }
+    .btn { text-decoration:none; font-size:11px; font-weight:600; padding:6px 12px; border-radius:6px; background:#f0f4f8; color:var(--accent); border:1px solid #d5dfe8; box-shadow:0 2px 6px rgba(0,0,0,.08); transition:.3s; display:inline-flex; align-items:center; gap:5px; }
+    .btn:hover { background:var(--accent); color:#fff; border-color:var(--accent); box-shadow:0 3px 10px rgba(44,95,124,.2); }
+    .badge { position:absolute; top:10px; left:10px; background:#fff; color:var(--accent); font-size:11px; padding:4px 8px; border-radius:6px; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,.15); }
+
+    .section-title { font-size:22px; font-weight:700; margin:50px 0 18px; background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .docs-wrap { display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+    .doc-embed { border:1px solid #d2dde6; border-radius:12px; overflow:hidden; background:#f8fbfe; box-shadow:0 4px 12px rgba(0,0,0,.06); padding:14px; display:flex; flex-direction:column; }
+    .doc-embed h3 { font-size:16px; margin-bottom:8px; color:var(--accent); }
+    .doc-embed iframe { width:100%; aspect-ratio:4/3; border:0; background:#fff; }
+    .legend { font-size:12px; color:#555; margin-top:8px; text-align:justify; hyphens:auto; }
+
+    footer { margin:40px 0 20px; text-align:center; font-size:12px; color:#666; }
+    footer a { color:var(--accent); text-decoration:none; }
+    footer a:hover { text-decoration:underline; }
+
+    @media print { nav, .actions, .badge, .stack span, header::after { display:none !important; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} .card{page-break-inside:avoid;} }
+    .top-links { position:absolute; top:12px; right:14px; display:flex; gap:8px; z-index:10; }
+    .top-links a { font-size:11px; padding:6px 10px; background:rgba(255,255,255,0.85); color:var(--accent); border-radius:6px; text-decoration:none; border:1px solid #d0dee7; backdrop-filter:blur(4px); transition:.25s; }
+    .top-links a:hover { background:var(--accent2); color:#fff; }
+  </style>
+</head>
+<body>
+  <header role="banner" aria-label="Cabeçalho principal">
+    <div class="top-links" aria-label="Navegação entre páginas do portfólio">
+      <a href="cv-carlos-correia.html">← Voltar ao CV</a>
+      <a href="projetos_programacao.html" aria-current="page">Projetos de Programação</a>
+      <a href="certificados_diplomas.html">Certificados e Diplomas</a>
+      <a href="projetos_relatorios_academicos.html">Projetos e Relatórios Académicos</a>
+    </div>
+    <h1>Projetos de Programação</h1>
+    <p class="tagline">Seleção de projetos desenvolvidos em diferentes linguagens e contextos: aplicações empresariais, jogos, sistemas administrativos e plataformas web. Foco em arquitetura limpa, documentação, acessibilidade e escalabilidade. Esta página complementa o CV principal.</p>
+    <nav aria-label="Navegação secundária">
+      <a href="cv-carlos-correia.html">← Voltar ao CV</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#futuro">Roadmap Futuro</a>
+    </nav>
+  </header>
+  <main id="projetos" role="main">
+    <div class="grid" aria-label="Lista de projetos">
+      <!-- MiniGfx SDL2 -->
+      <article class="card" aria-labelledby="minigfx-title">
+        <span class="badge">C++</span>
+        <figure class="letterbox game-preview" aria-label="Screenshot Space Defender">
+          <a href="projeto-space-defender.html" style="position:absolute;inset:0;z-index:1" aria-label="Abrir página detalhada do Space Defender"></a>
+          <div class="quick-links"><a href="https://youtu.be/0URm-pwDgD4" target="_blank" rel="noopener" aria-label="Ver vídeo gameplay no YouTube">🎥 Vídeo</a><a href="https://github.com/cpnf4560/MiniGfx_SDL2" target="_blank" rel="noopener" aria-label="Ver repositório no GitHub">🔗 Repo</a></div>          <img src="Imagens/minigfx.png" alt="Jogo Space Defender com inimigos e score" loading="lazy" class="static-preview">
+          <img src="Imagens/minigfx-gameplay.gif" alt="Gameplay animado Space Defender" loading="lazy" class="animated-preview">
+          <div class="play-overlay" title="Passar o rato para ver gameplay animado" aria-hidden="true">▶</div>
+        </figure>
+        <h2 id="minigfx-title"><a href="projeto-space-defender.html" style="text-decoration:none;color:inherit">Space Defender - Engine MiniGfx SDL2</a></h2>
+        <div class="meta">STATUS: PROTÓTIPO</div>
+        <p class="desc">Jogo arcade 2D em C++ usando SDL2: gestão dinâmica de velocidade, colisões, animações, áudio, fullscreen scaling, highscore persistente e arquitetura modular (GameManager, GameObjects). Base para futura engine gráfica leve.</p>
+        <div class="stack"><span>C++17</span><span>SDL2</span><span>SDL_mixer</span><span>SDL_image</span><span>Arquitetura Modular</span></div>
+        <div class="actions">
+          <a class="btn" href="https://github.com/cpnf4560/MiniGfx_SDL2" target="_blank" rel="noopener">🔗 Repositório</a>
+          <a class="btn" href="#" aria-disabled="true" title="Build multiplataforma futura">💻 Build</a>
+        </div>
+      </article>      <!-- Peladas das Quintas Feiras -->
+      <article class="card" aria-labelledby="peladas-title">
+        <span class="badge">Node.js</span>
+        <figure aria-label="Screenshot Futsal Manager"><a href="projeto-gestor-futsal.html" style="position:absolute;inset:0" aria-label="Abrir página detalhada do Gestor de Futsal"></a><div class="quick-links"><a href="https://peladasquintasfeiras.onrender.com" target="_blank" rel="noopener" aria-label="Abrir aplicação em produção">🚀 Live</a></div><img src="Imagens/gestorfutsal.png" alt="Interface estatísticas do gestor de futsal" loading="lazy"></figure>
+        <h2 id="peladas-title"><a href="projeto-gestor-futsal.html" style="text-decoration:none;color:inherit">Gestor de Futsal - Peladas das Quintas Feiras</a></h2>
+        <div class="meta">STATUS: PRODUÇÃO (RENDER)</div>
+        <p class="desc">Aplicação web completa para gestão de jogos de futsal: convocatórias, estatísticas em tempo real, backup automatizado, análise de performance (TOP 3), sistemas de coletes e indisponibilidades. Foco em robustez operacional e documentação extensa para suporte rápido.</p>
+        <div class="stack"><span>Node.js</span><span>Express</span><span>SQLite/PostgreSQL</span><span>EJS</span><span>Batch Scripts</span></div>
+        <div class="actions">
+          <a class="btn" href="https://github.com/cpnf4560/peladasquintasfeiras" target="_blank" rel="noopener">🔗 Repositório</a>
+          <a class="btn" href="https://peladasquintasfeiras.onrender.com" target="_blank" rel="noopener">🚀 Deploy</a>
+          <a class="btn" href="#" aria-disabled="true" title="Relatório PDF em breve">📄 PDF</a>
+        </div>
+      </article>
+
+      <!-- Gestor de Tarefas - Java Spring Boot + Swing -->
+      <article class="card" aria-labelledby="gestortarefas-title">
+        <span class="badge">Java</span>
+        <figure aria-label="Screenshot Gestor de Tarefas"><a href="projeto-gestor-tarefas.html" style="position:absolute;inset:0" aria-label="Abrir página detalhada do Gestor de Tarefas"></a><img src="Imagens/gestortarefas.png" alt="Aplicação de gestão de tarefas com interface Swing e backend Spring" loading="lazy"></figure>
+        <h2 id="gestortarefas-title"><a href="projeto-gestor-tarefas.html" style="text-decoration:none;color:inherit">Gestor de Tarefas - Java Spring Boot + Swing</a></h2>
+        <div class="meta">STATUS: CONCLUÍDO (UFCD 5425)</div>
+        <p class="desc">Aplicação híbrida com backend Spring Boot e cliente desktop em Swing: autenticação, gestão de tarefas e equipas, perfis com permissões, i18n (378+ traduções), exportação CSV e relatórios. Cumpridos 20/20 requisitos da UFCD 5425.</p>
+        <div class="stack"><span>Java 17</span><span>Spring Boot</span><span>Swing</span><span>MySQL/H2</span><span>Maven</span></div>
+        <div class="actions">
+          <a class="btn" href="#" aria-disabled="true" title="Repositório GitHub em breve">🔗 Repositório</a>
+          <a class="btn" href="#" aria-disabled="true" title="Relatório PDF em breve">📄 PDF</a>
+        </div>
+      </article>
+
+      <!-- Sistema Pizzaria -->
+      <article class="card" aria-labelledby="pizzaria-title">
+        <span class="badge">Full Stack</span>
+        <figure aria-label="Screenshot Pizzaria"><a href="projeto-sistema-pizzaria.html" style="position:absolute;inset:0" aria-label="Abrir página detalhada do Sistema de Encomendas Pizzaria"></a><img src="Imagens/pizzaria.png" alt="Ecrã do sistema de encomendas da pizzaria" loading="lazy"></figure>
+        <h2 id="pizzaria-title"><a href="projeto-sistema-pizzaria.html" style="text-decoration:none;color:inherit">Sistema de Encomendas - Pizzaria</a></h2>
+        <div class="meta">STATUS: EM EVOLUÇÃO</div>
+        <p class="desc">Plataforma full stack para gestão de clientes, encomendas, tradução PT/EN, autenticação JWT, painel administrativo e estatísticas de vendas. Integração futura com pagamentos e otimização de performance.</p>
+        <div class="stack"><span>Node.js</span><span>Express</span><span>PostgreSQL/MySQL</span><span>HTML/CSS/JS</span><span>JWT</span><span>Java (Relatórios)</span></div>
+        <div class="actions">
+          <a class="btn" href="https://github.com/cpnf4560/sistema_pizzaria" target="_blank" rel="noopener">🔗 Repositório</a>
+          <a class="btn" href="#" aria-disabled="true" title="Demo pública futura">🚀 Demo</a>
+          <a class="btn" href="#" aria-disabled="true" title="Relatório PDF em breve">📄 PDF</a>
+        </div>
+      </article>
+
+      <!-- Quest4Couple -->
+      <article class="card" aria-labelledby="quest4couple-title">
+        <span class="badge">Frontend</span>
+        <figure aria-label="Screenshot Quest4Couple"><a href="projeto-quest4couple.html" style="position:absolute;inset:0" aria-label="Abrir página detalhada do Quest4Couple"></a><div class="quick-links"><a href="https://quest4couple.onrender.com" target="_blank" rel="noopener" aria-label="Abrir demo do Quest4Couple">🚀 Demo</a></div><img src="Imagens/quest4couple.png" alt="Interface Smart Match e questionários" loading="lazy"></figure>
+        <h2 id="quest4couple-title"><a href="projeto-quest4couple.html" style="text-decoration:none;color:inherit">Quest4Couple + Smart Match</h2>
+        <div class="meta">STATUS: FASE 1 COMPLETA</div>
+        <p class="desc">Sistema de questionários temáticos (casais e individual), encriptação, gestão de créditos, backoffice e integração Smart Match (demo). Extensa documentação de negócio, UX e roadmap para evolução com Firebase e Stripe.</p>
+        <div class="stack"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Firebase (Planeado)</span><span>Stripe (Planeado)</span></div>
+        <div class="actions">
+          <a class="btn" href="https://github.com/cpnf4560/quest4couple" target="_blank" rel="noopener">🔗 Repositório</a>
+          <a class="btn" href="https://quest4couple.onrender.com" target="_blank" rel="noopener">🚀 Demo</a>
+        </div>
+      </article>
+    </div>
+
+    <section id="futuro" aria-labelledby="future-title">
+      <h2 class="section-title" id="future-title">🚀 Roadmap Futuro</h2>
+      <ul style="list-style:disc; padding-left:22px; font-size:14px; line-height:1.5;">
+        <li>Adicionar página completa de comandos SQL com filtros e pesquisa.</li>
+        <li>Publicar relatórios PDF individuais por projeto (arquitetura, métricas, lições aprendidas).</li>
+        <li>Expandir Space Defender para sistema modular de partículas e níveis.</li>
+        <li>Integrar Stripe + Firebase (Quest4Couple) e dashboards em tempo real.</li>
+        <li>Adicionar testes automatizados e cobertura de código (Peladas / Pizzaria).</li>
+        <li>Otimizar acessibilidade (WAI-ARIA) e gerar versão resumida para impressão.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2025 Carlos Correia. Todos os direitos reservados. • <a href="cv-carlos-correia.html">CV</a></p>
+  </footer>
+</body>
+</html>

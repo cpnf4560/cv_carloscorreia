@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link rel="icon" type="image/png" href="Imagens/favicon.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Correia - Curriculum Vitae</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #eef3f8; /* fundo neutro mais visível */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            backdrop-filter: blur(2px);
+            position: relative; /* necessário para as barras laterais */
+        }
+
+        /* Barras laterais visíveis ao lado do CV */
+        .container::before,
+        .container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: clamp(48px, 7vw, 120px);
+            pointer-events: none;
+        }
+
+        /* Esquerda (ao lado da barra azul) */
+        .container::before {
+            right: 100%;
+            background: linear-gradient(180deg, rgba(44,95,124,0.18) 0%, rgba(44,95,124,0.10) 100%), #d3e5f1;
+        }
+
+        /* Direita (ao lado do conteúdo principal) */
+        .container::after {
+            left: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.03) 100%), #eef2f7;
+        }
+
+        @media (max-width: 992px) {
+            .container::before,
+            .container::after { width: 24px; }
+        }
+
+        @media (max-width: 768px) {
+            .container::before,
+            .container::after { display: none; } /* esconde em ecrãs pequenos */
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: 340px 1fr; /* largura da sidebar aumentada (antes 300px) */
+            gap: 0;
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, var(--accent) 0%, #21506a 60%, #193d52 100%);
+            color: white;
+            padding: 40px 30px; /* revertido */
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: block;
+            border: 5px solid white;
+            background-color: #ddd;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            width: 20px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-style: normal;
+        }
+
+        .sidebar .contact-item a { color: #fff; text-decoration: none; }
+        .sidebar .contact-item a:hover { text-decoration: underline; }
+
+        .section-title-sidebar {
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 30px 0 15px; /* revertido */
+            padding-bottom: 10px; /* revertido */
+            border-bottom: 2px solid #4a8db3;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title-sidebar i {
+            margin-right: 10px;
+        }
+
+        .sidebar-content {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-content h4 {
+            font-size: 15px;
+            margin-bottom: 5px; /* revertido */
+        }
+
+        .sidebar-content p {
+            font-size: 13px;
+            color: #ddd;
+            margin-bottom: 15px; /* revertido */
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+        }
+        /* Não justificar o texto nas Referências */
+        .sidebar-content.references p { text-align: left; text-justify: auto; }
+
+        .skill-item {
+            margin-bottom: 10px;
+        }
+
+        .languages span {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .main-content {
+            padding: 40px 50px;
+        }
+
+        .name-header {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .name-header h1 {
+            font-size: 48px;
+            font-weight: bold;
+            color: #2c5f7c;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .name-header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -12px;
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent2), var(--accent));
+            border-radius: 2px;
+        }
+
+        .job-title {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            background: #fafcff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .resume-section { margin-bottom: 20px; padding-bottom:15px; } /* reduzir espaço interno inferior */
+        .experience-section { margin-bottom: 25px; padding-top:18px; margin-top:-8px; } /* aproxima a secção seguinte ao resumo */
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c5f7c;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #2c5f7c;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--accent);
+            font-style: normal;
+        }
+
+        .job-entry {
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+
+        .job-header {
+            margin-bottom: 10px;
+        }
+
+        .job-header h3 {
+            font-size: 18px;
+            color: #2c5f7c;
+            margin-bottom: 5px;
+        }
+
+        .company {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .date {
+            font-size: 13px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .job-description {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            text-align: justify;
+        }
+
+        .activities {
+            margin-top: 10px;
+        }
+
+        .activities strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .activities ul {
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        .activities li {
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .education-item {
+            margin-bottom: 20px;
+        }
+
+        .education-item h4 {
+            font-size: 16px;
+            color: #2c5f7c;
+            margin-bottom: 5px;
+        }
+
+        .education-item .institution {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 3px;
+        }
+
+        .award-item {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        .reference-item {
+            margin-bottom: 15px;
+        }
+
+        .reference-item strong {
+            color: #2c5f7c;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .reference-item span {
+            font-size: 14px;
+            color: #666;
+            display: block;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .section {
+                box-shadow: none;
+                background: transparent;
+            }
+            .name-header::after {
+                background: #000;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 30px 20px;
+            }
+            
+            .name-header h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            body {
+                background: #e0ebf2; /* simplifica em telas pequenas */
+            }
+        }
+
+        .main-content p:not(.date) {
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+        }
+
+        @page { margin: 12mm; }
+
+        :root { --accent:#2c5f7c; --accent2:#4aa3d3; }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        .languages .lang { margin-bottom:12px; }
+        .languages .bar { background:rgba(255,255,255,0.25); border-radius:6px; height:8px; overflow:hidden; margin-top:6px; }
+        .languages .bar .fill { height:100%; background:linear-gradient(90deg,var(--accent2),var(--accent)); width:var(--pct); transition:width .8s ease; }
+
+        /* Fix ícones (evitar itálico e herança de gradiente) */
+        i { font-style: normal; }
+
+        /* Tornar todos os links na sidebar legíveis e clicáveis */
+        .sidebar a { color: #fff; text-decoration: none; }
+        .sidebar a:hover { text-decoration: underline; }        .btn-projetos { display:inline-block; margin-left:6px; font-size:11px; background:var(--accent2); color:#fff; padding:3px 8px; border-radius:6px; text-decoration:none; line-height:1; }
+        .btn-projetos:hover { background:var(--accent); }
+
+        /* Botões de navegação no topo - mais destaque */
+        .top-nav-buttons {
+            position:absolute; 
+            top:12px; 
+            right:14px; 
+            display:flex; 
+            gap:10px; 
+            z-index:50; 
+            font-family:Poppins,Segoe UI,sans-serif;
+        }
+        .top-nav-btn {
+            font-size:12px; 
+            font-weight:600;
+            padding:8px 14px; 
+            background:linear-gradient(135deg, var(--accent2), var(--accent)); 
+            color:#fff; 
+            text-decoration:none; 
+            border:none;
+            border-radius:8px;
+            box-shadow: 0 4px 12px rgba(44,95,124,0.25);
+            transition: all 0.3s ease;
+            letter-spacing:0.3px;
+        }
+        .top-nav-btn:hover {
+            background:linear-gradient(135deg, var(--accent), #1a4560);
+            transform:translateY(-2px);
+            box-shadow: 0 6px 18px rgba(44,95,124,0.35);
+        }
+        .top-nav-btn:active {
+            transform:translateY(0);
+            box-shadow: 0 2px 8px rgba(44,95,124,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .top-nav-buttons { top:8px; right:8px; gap:6px; }
+            .top-nav-btn { font-size:10px; padding:6px 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">            <!-- Botões navegação com destaque -->
+            <div class="top-nav-buttons">
+                <a href="projetos_programacao.html" class="top-nav-btn">📂 Projetos</a>
+                <a href="certificados_diplomas.html" class="top-nav-btn">🎓 Certificados</a>
+                <a href="projetos_relatorios_academicos.html" class="top-nav-btn">📄 Relatórios</a>
+            </div>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <img src="Imagens/img100.jpg" alt="Carlos Correia" class="profile-img">
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i>🏠</i>
+                        <span>Penafiel, 23 agosto 1989<br>(36 anos)</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>✉️</i>
+                        <a href="mailto:carlos.sousacorreia@gmail.com">carlos.sousacorreia@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i>📱</i>
+                        <a href="tel:+351918631101">+351 918 631 101</a>
+                    </div>
+                </div>
+
+                <h3 class="section-title-sidebar"><i>🎓</i> FORMAÇÃO ACADÉMICA</h3>
+                <div class="sidebar-content">
+                    <h4>2017 | 2019<br>GESTÃO E NEGÓCIO DE PME</h4>
+                    <p>Técnico Superior Profissional | EQF/ISCED Nível 5</p>
+
+                    <h4>ESTG - Instituto Politécnico do Porto</h4>
+                    <p>Escola Superior de Tecnologia e Gestão de Felgueiras</p>
+
+                    <h4>Unidades Curriculares [Área Técnica]:</h4>
+                    <p>Contabilidade e Análise Financeira | Cálculo Financeiro | Direito Empresarial | Ferramentas de Gestão | Sistemas de Informação | Gestão de Vendas | Marketing | Negociação | Inovação e Empreendedorismo | Gestão Estratégica | Distribuição e Logística | Higiene, Segurança e Qualidade no Trabalho</p>
+                </div>
+
+                <h3 class="section-title-sidebar"><i>📋</i> OUTRAS QUALIFICAÇÕES</h3>
+                <div class="sidebar-content">
+                    <h4>LINGUAGENS DE PROGRAMAÇÃO - JAVA <a class="btn-projetos" href="projetos_programacao.html">ver projetos</a></h4>
+                    <p>EQF/ISCED - Nível 5 | 350 horas | 19 valores<br>IEFP, IP | 2025</p>
+
+                    <h4>CONTABILIDADE E FISCALIDADE</h4>
+                    <p>EQF/ISCED - Nível 3 | 225 horas<br>Associação Empresarial de Penafiel | 2014</p>
+
+                    <h4>INFORMÁTICA E GESTÃO DE REDES</h4>
+                    <p>EQF/ISCED - Nível 3 | 180 horas<br>Filomarketing, Lda. | 2010</p>
+
+                    <h4>ECONOMIA DIGITAL</h4>
+                    <p>100 Horas<br>CFGE, Lda. | 2018</p>                    <h4>CERTIFICADO DE COMPETÊNCIAS PEDAGÓGICAS</h4>
+                    <p>Escola de Negócios e Administração, Lda.<br>CCP n.º F682998/2019</p>
+                </div>
+
+                <h3 class="section-title-sidebar"><i>🌍</i> LÍNGUAS</h3>
+                <div class="sidebar-content languages">
+                    <div class="lang">
+                        <span><strong>Inglês:</strong> B2 (Intermédio Avançado)</span>
+                        <div class="bar"><div class="fill" style="--pct:80%"></div></div>
+                    </div>
+                    <div class="lang">
+                        <span><strong>Espanhol:</strong> A2 (Básico - conversação e escrita)</span>
+                        <div class="bar"><div class="fill" style="--pct:35%"></div></div>
+                    </div>
+                </div>
+
+                <h3 class="section-title-sidebar"><i>💡</i> SOFT SKILLS</h3>
+                <div class="sidebar-content">
+                    <p>Organização e capacidade analítica<br>
+                    Capacidade de resolução de problemas<br>
+                    Relacionamento interpessoal e trabalho em equipa</p>
+                </div>
+
+                <h3 class="section-title-sidebar"><i>🔧</i> HARD SKILLS</h3>
+                <div class="sidebar-content">
+                    <p>Experiência híbrida em gestão financeira, contabilidade, área comercial, logística e marketing.<br>
+                    Experiência sólida em mercados internacionais.<br>
+                    Domínio e desenvolvimento de vários programas informáticos e ERPs.</p>
+                </div>
+                <!-- Secção de Prémios movida para a sidebar -->
+                <h3 class="section-title-sidebar"><i>🏆</i> PRÉMIOS</h3>
+                <div class="sidebar-content">
+                    <p>Melhor performance Individual Grand Royale London (Tripadvisor, Cartão Cliente, Upselling Pq. Almoços) Setembro de 2016, outubro de 2016, novembro de 2016 e dezembro 2016.</p>
+                    <p>Melhor performance da cadeia de hotéis em Out/2016</p>
+                </div>
+                <!-- Referências movidas para a sidebar -->
+                <h3 class="section-title-sidebar"><i>📞</i> REFERÊNCIAS</h3>
+                <div class="sidebar-content references">
+                    <p><strong>Shaftesbury Hotels | Montcalm Luxury Hotels</strong><br>
+                    Ms. Nema da Silva — General Area Manager | <a href="tel:+447940414334">+44 7940414334</a> | <a href="mailto:nema@shaftesburyhotels.com">nema@shaftesburyhotels.com</a></p>
+                    <p><strong>Magasteel, Lda.</strong><br>
+                    Dr. Joaquim Bessa Ribeiro — Diretor Financeiro | <a href="tel:+351912472483">+351 912 472 483</a></p>
+                    <p><strong>Altaroda, SA.</strong><br>
+                    Pedro Lopes — Assessor da Administração | <a href="tel:+351916682483">+351 916 682 483</a></p>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="name-header">
+                    <h1>CARLOS CORREIA</h1>
+                    <p class="job-title">Técnico Superior de Gestão e Negócio de PME</p>
+                </div>
+
+                <!-- Resumo Profissional -->
+                <section class="section resume-section">
+                    <h2 class="section-title">📄 RESUMO PROFISSIONAL</h2>
+                    <p>Profissional com experiência transversal na gestão de PME, focado em organização, melhoria de processos e resultados. Atuação direta em: Gestão Comercial; Concursos Públicos; Gestão Financeira; Contabilidade; Compras e Logística; Produção; Marketing; Recursos Humanos; Qualidade; E-Commerce e operações de Hotelaria. Experiência internacional, comunicação fluente em inglês e histórico de desempenho reconhecido.</p>
+                </section>
+
+                <!-- Experiência Profissional -->
+                <section class="section experience-section">
+                    <h2 class="section-title">💼 EXPERIÊNCIA PROFISSIONAL</h2>
+
+                    <div class="job-entry">
+                        <div class="job-header">
+                            <h3>Técnico Superior de Gestão e Negócio de PME</h3>
+                            <p class="company">MEDINOVA, LDA.</p>
+                            <p class="date">Serviços especializados em Medicina no Trabalho, Segurança no Trabalho e Segurança Alimentar, Controlo Pragas e Desinfestação, Segurança contra Incêndios e Formação.<br>De 11/2023 a 11/2024.</p>
+                        </div>
+                        <div class="activities">
+                            <strong>Atividades Principais:</strong>
+                            <ul>
+                                <li><strong>Gestão Comercial:</strong> Responsável pela gestão administrativa de propostas de serviços e contratos.</li>
+                                <li><strong>Gestão de Concursos Públicos:</strong> Coordenação de propostas em concursos públicos.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="job-entry">
+                        <div class="job-header">
+                            <h3>Técnico Superior de Gestão e Negócio de PME</h3>
+                            <p class="company">MAGASTEEL, SOLUÇÕES EM TUBOS DE AÇO, LDA.</p>
+                            <p class="date">Comércio de tubos de aço carbono<br>De 09/2021 a 11/2023.</p>
+                        </div>
+                        <div class="activities">
+                            <strong>Atividades Principais:</strong>
+                            <ul>
+                                <li><strong>Gestão Financeira:</strong> Gestão de créditos, factoring, confirming, leasing, contas caucionadas.</li>
+                                <li><strong>Contabilidade:</strong> Faturação, controlo de contas, Intrastat, IVA, controlo do inventário.</li>
+                                <li><strong>Logística:</strong> Gestão de compras e vendas, transportes (gestão de cargas e documentação aduaneira).</li>
+                                <li><strong>Produção:</strong> Planificação, elaboração de ordens de produção, circuito de produção em ERP.</li>
+                                <li><strong>Marketing:</strong> Gestão comercial (clientes), prospeção, website, produção de conteúdo gráfico.</li>
+                                <li><strong>Recursos Humanos:</strong> Processamento salarial, recrutamento, formação.</li>
+                            </ul>
+                            <p class="date" style="margin-top: 10px;">* Faturação de 4,6M€ em 2021, com apenas 2 funcionários, desde a mudança de CAE da empresa em maio de 2021.</p>
+                        </div>
+                    </div>
+
+                    <div class="job-entry">
+                        <div class="job-header">
+                            <h3>Técnico Administrativo</h3>
+                            <p class="company">SATFIEL, LDA.</p>
+                            <p class="date">Reparação de eletrodomésticos (03/2021 a 09/2021)</p>
+                        </div>
+                        <div class="activities">
+                            <strong>Atividades Principais:</strong>
+                            <ul>
+                                <li><strong>Assistente de Contabilidade e Dept. RH:</strong> Faturação | Estatísticas | Aprovação de Folhas de Obra</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="job-entry">
+                        <div class="job-header">
+                            <p class="company">ALTARODA, S.A.</p>
+                            <p class="date">Comércio de Equipamentos e Consumíveis Setor Automóvel<br>De 01/2015 a 10/2015 e de 04/2017 a 03/2021</p>
+                        </div>
+                        <div class="activities">
+                            <strong>Atividades Principais:</strong>
+                            <ul>
+                                <li><strong>Compras e Logística:</strong> Controlo de stocks e gestão de encomendas.</li>
+                                <li><strong>Qualidade:</strong> Gestão de reclamações, traduções e auditorias. Empresa com certificação ISO9001.</li>
+                                <li><strong>Marketing:</strong> Desenvolvimento de catálogos, flyers e organização de eventos.</li>
+                                <li><strong>E-Commerce:</strong> Criação e gestão do site www.altaroda.pt e comunicação digital.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="job-entry">
+                        <div class="job-header">
+                            <h3>Supervisor de Turno | Chefe de Turno | Night Auditor</h3>
+                            <p class="company">SHAFTESBURY HOTELS LONDON LIMITED</p>
+                            <p class="date">Shaftesbury Hotels | Park Grand Hotels | Montcalm Luxury Hotels (24 propriedades em 2017)<br>De 12/2011 a 10/2012; de 03/2013 a 01/2014 e de 03/2016 a 03/2017 (total de 2 anos e 8 meses)</p>
+                        </div>
+                        <p class="job-description">Progressão de carreira desde Night Porter/Auditor até Supervisor de Turno, com responsabilidades crescentes em atendimento a clientes, gestão de tesouraria, auditoria, gestão de reclamações, formação de equipas e supervisão multi-hotel. Inclui experiência em liderança de equipas de receção e formação em Duty Management.</p>
+                        <div class="activities">
+                            <strong>Atividades Principais:</strong>
+                            <ul>
+                                <li><strong>Night Porter:</strong> Serviços de quarto, apoio aos hóspedes.</li>
+                                <li><strong>Night Auditor:</strong> Atendimento a hóspedes, gestão de tesouraria e auditoria noturna.</li>
+                                <li><strong>Senior Night Auditor:</strong> Gestão de reclamações de clientes e formação de novos funcionários.</li>
+                                <li><strong>Chefe de Turno de Receção:</strong> Gestão de equipas de receção e formação de novos rececionistas.</li>
+                                <li><strong>Supervisor de Turno Noturno:</strong> Liderança e supervisão de equipas em cinco unidades hoteleiras, com responsabilidades de formação a gerentes de outros departamentos.</li>
+                                <li><strong>Duty Manager Trainee:</strong> Desenvolvimento de competências em gestão de reclamações e feedback de clientes, e controlo de performance de equipas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Outras Experiências Profissionais -->
+                <section class="section">
+                    <h2 class="section-title">🧰 OUTRAS EXPERIÊNCIAS PROFISSIONAIS</h2>
+                    <ul>
+                        <li><strong>Técnico de Arqueologia:</strong> 2006–2010 — 7 trabalhos de campo | 2 trabalhos em laboratório</li>
+                        <li><strong>Distribuição:</strong> 2009 — Carmoplantas — Distribuição de Plantas Ornamentais</li>
+                        <li><strong>Call Center:</strong> 2009–2010 — Novabase — Apoio ao Cliente TV‑Net‑Voz (ZON TV Cabo)</li>
+                        <li><strong>Parque de Diversões:</strong> 2010 and 2011 — Bracalândia — Operador de Divertimentos</li>
+                        <li><strong>Call Center:</strong> 2012 — Access Self Storage — Remote Security Center</li>
+                        <li><strong>Handyman:</strong> 2011 and 2016 — Modesto, California</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
