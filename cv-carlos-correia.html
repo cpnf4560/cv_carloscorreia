@@ -65,12 +65,86 @@
             display: grid;
             grid-template-columns: 340px 1fr; /* largura da sidebar aumentada (antes 300px) */
             gap: 0;
-        }
-
-        .sidebar {
+        }        .sidebar {
             background: linear-gradient(180deg, var(--accent) 0%, #21506a 60%, #193d52 100%);
             color: white;
-            padding: 40px 30px; /* revertido */
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Degradê animado dinâmico */
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            inset: -50%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(74, 163, 211, 0.15) 50%,
+                transparent 70%
+            );
+            animation: gradientShift 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(-25%, -25%) rotate(0deg); }
+            50% { transform: translate(25%, 25%) rotate(180deg); }
+        }        /* Efeito spotlight ao passar o rato */
+        .sidebar::after {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(74, 163, 211, 0.08) 30%,
+                transparent 70%
+            );
+            border-radius: 50%;
+            left: var(--mouse-x, 50%);
+            top: var(--mouse-y, 50%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.4s ease, left 0.15s ease, top 0.15s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sidebar:hover::after {
+            opacity: 1;
+        }
+
+        /* Garantir que o conteúdo fica acima dos efeitos */
+        .sidebar > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Ondas decorativas sutis (elemento adicional) */
+        .sidebar-waves {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(74, 163, 211, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 30%);
+            animation: waves 12s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes waves {
+            0%, 100% { 
+                transform: scale(1) translateY(0);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: scale(1.1) translateY(-10px);
+                opacity: 0.8;
+            }
         }
 
         .profile-img {
@@ -412,7 +486,43 @@
             .top-nav-buttons { top:8px; right:8px; gap:6px; }
             .top-nav-btn { font-size:10px; padding:6px 10px; }
         }
-    </style>
+    </style>    <script>
+        // Efeito de spotlight que segue o cursor na sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (!sidebar) return;
+
+            let mouseX = 0, mouseY = 0;
+            let currentX = 0, currentY = 0;
+            const smoothing = 0.15; // Suavização do movimento
+
+            sidebar.addEventListener('mousemove', function(e) {
+                const rect = sidebar.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+            });
+
+            sidebar.addEventListener('mouseenter', function() {
+                sidebar.style.setProperty('--spotlight-active', '1');
+            });
+
+            sidebar.addEventListener('mouseleave', function() {
+                sidebar.style.setProperty('--spotlight-active', '0');
+            });
+
+            // Animação suave do spotlight
+            function animate() {
+                currentX += (mouseX - currentX) * smoothing;
+                currentY += (mouseY - currentY) * smoothing;
+                
+                sidebar.style.setProperty('--mouse-x', currentX + 'px');
+                sidebar.style.setProperty('--mouse-y', currentY + 'px');
+                
+                requestAnimationFrame(animate);
+            }
+            animate();
+        });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -424,6 +534,7 @@
             </div>
             <!-- Sidebar -->
             <div class="sidebar">
+                <div class="sidebar-waves"></div>
                 <img src="Imagens/img100.jpg" alt="Carlos Correia" class="profile-img">
                 
                 <div class="contact-info">
