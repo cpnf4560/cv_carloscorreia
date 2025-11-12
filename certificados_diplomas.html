@@ -18,13 +18,18 @@
     .lang-toggle { position:absolute; top:12px; left:14px; z-index:10; }
     .lang-btn { font-size:11px; font-weight:600; padding:6px 12px; background:rgba(255,255,255,0.9); color:var(--accent); text-decoration:none; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:all 0.3s ease; display:inline-flex; align-items:center; gap:4px; }
     .lang-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.15); }
-    h1 { font-size:36px; }
-
-    main { max-width:1200px; margin:-40px auto 60px; background:#fff; padding:32px 40px; border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.12); }
+    h1 { font-size:36px; }    main { max-width:1200px; margin:-40px auto 60px; background:#fff; padding:32px 40px; border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.12); }
     .grid { display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
-    .doc { border:1px solid #d2dde6; border-radius:12px; padding:14px; background:#f8fbfe; box-shadow:0 4px 12px rgba(0,0,0,.06); }
+    .doc { border:1px solid #d2dde6; border-radius:12px; padding:14px; background:#f8fbfe; box-shadow:0 4px 12px rgba(0,0,0,.06); position:relative; }
     .doc h2 { font-size:16px; color:var(--accent); margin-bottom:8px; }
-    .doc iframe { width:100%; aspect-ratio:4/3; border:0; background:#fff; }
+    .doc-preview { width:100%; aspect-ratio:4/3; border:0; background:#fff; border-radius:8px; overflow:hidden; position:relative; cursor:pointer; }
+    .doc-preview iframe { width:100%; height:100%; border:0; pointer-events:none; }
+    .doc-overlay { position:absolute; inset:0; background:rgba(0,0,0,0); transition:all 0.3s ease; display:flex; align-items:center; justify-content:center; }
+    .doc-preview:hover .doc-overlay { background:rgba(44,95,124,0.85); }
+    .doc-actions { opacity:0; transform:scale(0.9); transition:all 0.3s ease; display:flex; gap:10px; }
+    .doc-preview:hover .doc-actions { opacity:1; transform:scale(1); }
+    .doc-btn { padding:8px 16px; background:#fff; color:var(--accent); border-radius:6px; text-decoration:none; font-size:12px; font-weight:600; display:flex; align-items:center; gap:6px; transition:all 0.2s ease; }
+    .doc-btn:hover { background:var(--accent2); color:#fff; transform:translateY(-2px); }
     .legend { font-size:12px; color:#555; margin-top:8px; text-align:justify; hyphens:auto; }
 
     footer { margin:40px 0 20px; text-align:center; font-size:12px; color:#666; }
@@ -35,9 +40,8 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="lang-toggle">
-      <a href="certificates-diplomas-en.html" class="lang-btn">🇬🇧 English</a>
+  <header>    <div class="lang-toggle">
+      <a href="certificates-diplomas-en.html" class="lang-btn">EN</a>
     </div>
     
     <div class="top-links" aria-label="Navegação entre páginas do portfólio">
@@ -52,31 +56,70 @@
     <h1>Certificados e Diplomas</h1>
   </header>
 
-  <main>
-    <div class="grid" aria-label="Lista de documentos" id="docs-grid">
+  <main>    <div class="grid" aria-label="Lista de documentos" id="docs-grid">
       <article class="doc" data-date="2025-10-01">
         <h2>Certificado JAVA</h2>
-        <iframe title="Certificado JAVA" src="Docs/Certificado JAVA.pdf"></iframe>
+        <div class="doc-preview" onclick="window.open('Docs/Certificado JAVA.pdf', '_blank')">
+          <iframe title="Certificado JAVA" src="Docs/Certificado JAVA.pdf"></iframe>
+          <div class="doc-overlay">
+            <div class="doc-actions">
+              <a href="Docs/Certificado JAVA.pdf" target="_blank" class="doc-btn" onclick="event.stopPropagation()">👁️ Abrir</a>
+              <a href="Docs/Certificado JAVA.pdf" download class="doc-btn" onclick="event.stopPropagation()">⬇️ Download</a>
+            </div>
+          </div>
+        </div>
         <p class="legend"><time datetime="2025-10-01">Out 2025</time> · Formação profissional (350h) em desenvolvimento Java.</p>
       </article>
       <article class="doc" data-date="2018-10-01">
         <h2>Certificado Marketing Digital</h2>
-        <iframe title="Certificado Marketing Digital" src="Docs/Certificado Mkt Digital.pdf"></iframe>
+        <div class="doc-preview" onclick="window.open('Docs/Certificado Mkt Digital.pdf', '_blank')">
+          <iframe title="Certificado Marketing Digital" src="Docs/Certificado Mkt Digital.pdf"></iframe>
+          <div class="doc-overlay">
+            <div class="doc-actions">
+              <a href="Docs/Certificado Mkt Digital.pdf" target="_blank" class="doc-btn" onclick="event.stopPropagation()">👁️ Abrir</a>
+              <a href="Docs/Certificado Mkt Digital.pdf" download class="doc-btn" onclick="event.stopPropagation()">⬇️ Download</a>
+            </div>
+          </div>
+        </div>
         <p class="legend"><time datetime="2018-10-01">Out 2018</time> · Estratégias de marketing digital e presença online.</p>
       </article>
       <article class="doc" data-date="2019-10-01">
         <h2>CTESP Gestão e Negócio de PME</h2>
-        <iframe title="CTESP - GNPME" src="Docs/CTESP - GNPME.pdf"></iframe>
+        <div class="doc-preview" onclick="window.open('Docs/CTESP - GNPME.pdf', '_blank')">
+          <iframe title="CTESP - GNPME" src="Docs/CTESP - GNPME.pdf"></iframe>
+          <div class="doc-overlay">
+            <div class="doc-actions">
+              <a href="Docs/CTESP - GNPME.pdf" target="_blank" class="doc-btn" onclick="event.stopPropagation()">👁️ Abrir</a>
+              <a href="Docs/CTESP - GNPME.pdf" download class="doc-btn" onclick="event.stopPropagation()">⬇️ Download</a>
+            </div>
+          </div>
+        </div>
         <p class="legend"><time datetime="2019-10-01">Out 2019</time> · Conclusão do curso (período 2017–2019).</p>
       </article>
       <article class="doc" data-date="2025-11-01">
         <h2>Passaporte Qualifica</h2>
-        <iframe title="Passaporte Qualifica" src="Docs/Passaporte Qualifica.pdf"></iframe>
+        <div class="doc-preview" onclick="window.open('Docs/Passaporte Qualifica.pdf', '_blank')">
+          <iframe title="Passaporte Qualifica" src="Docs/Passaporte Qualifica.pdf"></iframe>
+          <div class="doc-overlay">
+            <div class="doc-actions">
+              <a href="Docs/Passaporte Qualifica.pdf" target="_blank" class="doc-btn" onclick="event.stopPropagation()">👁️ Abrir</a>
+              <a href="Docs/Passaporte Qualifica.pdf" download class="doc-btn" onclick="event.stopPropagation()">⬇️ Download</a>
+            </div>
+          </div>
+        </div>
         <p class="legend"><time datetime="2025-11-01">Nov 2025</time> · Registo de qualificações e competências.</p>
       </article>
       <article class="doc" data-date="2025-11-01">
         <h2>Curriculum Vitae</h2>
-        <iframe title="CV 11.2025" src="Docs/CV 11.2025.pdf"></iframe>
+        <div class="doc-preview" onclick="window.open('Docs/CV 11.2025.pdf', '_blank')">
+          <iframe title="CV 11.2025" src="Docs/CV 11.2025.pdf"></iframe>
+          <div class="doc-overlay">
+            <div class="doc-actions">
+              <a href="Docs/CV 11.2025.pdf" target="_blank" class="doc-btn" onclick="event.stopPropagation()">👁️ Abrir</a>
+              <a href="Docs/CV 11.2025.pdf" download class="doc-btn" onclick="event.stopPropagation()">⬇️ Download</a>
+            </div>
+          </div>
+        </div>
         <p class="legend"><time datetime="2025-11-01">Nov 2025</time> · Versão atual do CV (layout otimizado para impressão).</p>
       </article>
     </div>
