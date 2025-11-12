@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projetos e Relatórios Académicos - Carlos Correia</title>
-  <meta name="description" content="Projetos, relatórios e documentos académicos selecionados de Carlos Correia." />
+  <title>Academic Projects and Reports - Carlos Correia</title>
+  <meta name="description" content="Selected academic projects, reports and documents of Carlos Correia." />
   <link rel="icon" type="image/png" href="Imagens/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -27,7 +27,8 @@
     .doc iframe { width:100%; aspect-ratio:4/3; border:0; background:#fff; }
     .legend { font-size:12px; color:#555; margin-top:8px; text-align:justify; hyphens:auto; }
 
-    footer { margin:40px 0 20px; text-align:center; font-size:12px; color:#666; }    footer a { color:var(--accent); text-decoration:none; }
+    footer { margin:40px 0 20px; text-align:center; font-size:12px; color:#666; }
+    footer a { color:var(--accent); text-decoration:none; }
     footer a:hover { text-decoration:underline; }
 
     @media print { .top-links, .lang-toggle { display:none; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} }
@@ -36,47 +37,48 @@
 <body>
   <header>
     <div class="lang-toggle">
-      <a href="academic-reports-en.html" class="lang-btn">🇬🇧 English</a>
+      <a href="projetos_relatorios_academicos.html" class="lang-btn">🇵🇹 Português</a>
     </div>
     
-    <div class="top-links" aria-label="Navegação entre páginas do portfólio">
-      <a href="cv-carlos-correia.html">← Voltar ao CV</a>
-      <a href="projetos_programacao.html">Projetos de Programação</a>
-      <a href="certificados_diplomas.html">Certificados e Diplomas</a>
-      <a href="projetos_relatorios_academicos.html" aria-current="page">Projetos e Relatórios Académicos</a>
+    <div class="top-links" aria-label="Portfolio navigation">
+      <a href="cv-carlos-correia-en.html">← Back to CV</a>
+      <a href="projects-programming-en.html">Programming Projects</a>
+      <a href="certificates-diplomas-en.html">Certificates & Diplomas</a>
+      <a href="academic-reports-en.html" aria-current="page">Academic Reports</a>
     </div>
-    <h1>Projetos e Relatórios Académicos</h1>
+    <h1>Academic Projects and Reports</h1>
   </header>
 
   <main>
-    <div class="grid" aria-label="Lista de documentos académicos" id="acad-grid">      <article class="doc" data-date="2025-10-01">
-        <h2>Relatório Gestor de Tarefas - Java Spring Boot + Swing</h2>
-        <iframe title="Relatório Gestor de Tarefas - Java" src="Docs/Relatorio Gestor Tarefas JAVA.pdf"></iframe>
-        <p class="legend"><time datetime="2025-10-01">Out 2025</time> · Relatório do projeto Gestor de Tarefas (Java 17, Spring Boot, Swing). Arquitetura, requisitos UFCD 5425 e métricas.</p>
+    <div class="grid" aria-label="Academic document list" id="acad-grid">
+      <article class="doc" data-date="2025-10-01">
+        <h2>Task Manager Report - Java Spring Boot + Swing</h2>
+        <iframe title="Task Manager Report - Java" src="Docs/Relatorio Gestor Tarefas JAVA.pdf"></iframe>
+        <p class="legend"><time datetime="2025-10-01">Oct 2025</time> · Task Manager project report (Java 17, Spring Boot, Swing). Architecture, UFCD 5425 requirements and metrics.</p>
       </article>
       <article class="doc" data-date="2019-06-01">
-        <h2>CCP - Projeto de Intervenção</h2>
-        <iframe title="CCP - Projeto de Intervenção" src="Docs/CCP - Projeto Intervencao.pdf"></iframe>
-        <p class="legend"><time datetime="2019-06-01">Jun 2019</time> · Projeto de intervenção pedagógica desenvolvido no curso CCP.</p>
+        <h2>CCP - Intervention Project</h2>
+        <iframe title="CCP - Intervention Project" src="Docs/CCP - Projeto Intervencao.pdf"></iframe>
+        <p class="legend"><time datetime="2019-06-01">Jun 2019</time> · Pedagogical intervention project developed in CCP course.</p>
       </article>
       <article class="doc" data-date="2019-09-01">
-        <h2>Relatório Gestão Marketing - ALTARODA</h2>
-        <iframe title="Relatório Gestão Marketing - ALTARODA" src="Docs/Relatório Gestão Mkt Altaroda.pdf"></iframe>
-        <p class="legend"><time datetime="2019-09-01">Set 2019</time> · Relatório académico de gestão e marketing na ALTARODA.</p>
+        <h2>Marketing Management Report - ALTARODA</h2>
+        <iframe title="Marketing Management Report - ALTARODA" src="Docs/Relatório Gestão Mkt Altaroda.pdf"></iframe>
+        <p class="legend"><time datetime="2019-09-01">Sep 2019</time> · Academic report on management and marketing at ALTARODA.</p>
       </article>
       <article class="doc" data-date="2008-07-01">
-        <h2>Dossier Técnico Individual (EPA)</h2>
-        <iframe title="Dossier Técnico Individual - EPA" src="Docs/Dossier Tecnico Individual - EPA.pdf"></iframe>
-        <p class="legend"><time datetime="2008-07-01">Jul 2008</time> · Dossier técnico individual elaborado na EPA.</p>
+        <h2>Individual Technical Dossier (EPA)</h2>
+        <iframe title="Individual Technical Dossier - EPA" src="Docs/Dossier Tecnico Individual - EPA.pdf"></iframe>
+        <p class="legend"><time datetime="2008-07-01">Jul 2008</time> · Individual technical dossier prepared at EPA.</p>
       </article>
     </div>
   </main>
 
   <footer>
-    <p>© 2025 Carlos Correia • <a href="cv-carlos-correia.html">CV</a></p>
+    <p>© 2025 Carlos Correia • <a href="cv-carlos-correia-en.html">CV</a></p>
   </footer>
   <script>
-    // Ordenar artigos por data-date (desc)
+    // Sort articles by data-date (desc)
     (function(){
       const grid = document.getElementById('acad-grid');
       if(!grid) return;

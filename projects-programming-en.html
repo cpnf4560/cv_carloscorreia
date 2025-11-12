@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Programming Projects - Carlos Correia</title>
+  <meta name="description" content="Carlos Correia's programming project portfolio: Java, Node.js, SDL2/C++, Frontend and Web Systems." />
+  <meta name="keywords" content="Carlos Correia, Projects, Java, Node.js, C++, SDL2, HTML, CSS, JavaScript" />
+  <link rel="icon" type="image/png" href="Imagens/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --accent:#2c5f7c; --accent2:#4aa3d3; --bg:#eef3f8; --radius:16px; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Poppins','Segoe UI',Tahoma,sans-serif; background:var(--bg); color:#222; line-height:1.55; }
+    header { background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%); color:#fff; padding:40px 28px 56px; position:relative; overflow:hidden; }
+    header::after { content:""; position:absolute; inset:0; background:radial-gradient(circle at 80% 20%,rgba(255,255,255,0.25),transparent 60%); mix-blend-mode:overlay; }
+    h1 { font-size:42px; letter-spacing:.5px; margin-bottom:10px; }
+    .tagline { font-size:15px; max-width:760px; text-align:justify; hyphens:auto; }
+    nav { margin-top:22px; display:flex; gap:14px; flex-wrap:wrap; }
+    nav a { background:#fff; color:var(--accent); padding:8px 16px; font-size:13px; font-weight:600; border-radius:50px; text-decoration:none; box-shadow:0 3px 10px rgba(0,0,0,.15); transition:.3s; }
+    nav a:hover { background:var(--accent2); color:#fff; }
+
+    main { max-width:1200px; margin:-40px auto 60px; background:#fff; padding:40px 50px; border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.12); position:relative; }
+    @media (max-width:860px){ main { padding:32px 24px; margin:-60px 16px 50px; } h1{font-size:34px;} }
+
+    .grid { display:grid; gap:36px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:10px; }
+    .card { background:#fafcff; border:1px solid #dde7ef; border-radius:14px; display:flex; flex-direction:column; overflow:hidden; position:relative; box-shadow:0 4px 14px rgba(0,0,0,.06); transition:.35s; }
+    .card:hover { transform:translateY(-6px); box-shadow:0 8px 26px rgba(0,0,0,.12); }
+    .card figure { margin:0; aspect-ratio:16/9; background:linear-gradient(135deg,#d3e5f1,#c0d7e6); display:flex; align-items:center; justify-content:center; font-size:38px; color:#2c5f7c; font-weight:600; letter-spacing:.5px; position:relative; overflow:hidden; }
+    .card figure.letterbox { background:#000; }
+    .card figure.letterbox img { object-fit:contain; background:#000; }
+    .card img { width:100%; height:100%; object-fit:cover; display:block; }
+    
+    .game-preview { position:relative; cursor:pointer; }
+    .game-preview img { width:100%; height:100%; object-fit:contain; display:block; transition:opacity 0.3s ease; }
+    .game-preview .animated-preview { 
+      position:absolute; 
+      inset:0; 
+      opacity:0; 
+      z-index:1;
+      pointer-events:none;
+    }
+    .game-preview:hover .animated-preview { opacity:1; pointer-events:auto; }
+    .game-preview .play-overlay { 
+      position:absolute; 
+      inset:0; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      background:rgba(0,0,0,0.4); 
+      color:#fff; 
+      font-size:52px; 
+      opacity:0.8; 
+      transition:all 0.3s ease;
+      pointer-events:none;
+      z-index:2;
+      text-shadow:0 2px 8px rgba(0,0,0,0.6);
+    }
+    .game-preview:hover .play-overlay { opacity:0; transform:scale(1.2); }
+    
+    .card figure .quick-links { position:absolute; top:8px; right:8px; display:flex; gap:4px; z-index:5; }
+    .card figure .quick-links a { background:rgba(255,255,255,0.9); color:var(--accent); padding:4px 7px; font-size:10.5px; border-radius:5px; text-decoration:none; font-weight:600; border:1px solid rgba(0,0,0,.25); box-shadow:0 2px 5px rgba(0,0,0,.28); line-height:1; }
+    .card figure .quick-links a:hover { background:linear-gradient(135deg,var(--accent2),var(--accent)); color:#fff; border-color:var(--accent2); }
+    
+    .card h2 { font-size:16px; padding:16px 20px 4px; color:var(--accent); line-height:1.3; }
+    .meta { font-size:11px; font-weight:600; color:#666; padding:0 20px 8px; text-transform:uppercase; letter-spacing:.5px; }
+    .desc { font-size:13px; padding:0 20px 16px; flex:1; text-align:justify; hyphens:auto; color:#555; line-height:1.5; }
+    .stack { padding:0 20px 12px; display:flex; flex-wrap:wrap; gap:5px; }
+    .stack span { background:linear-gradient(90deg,var(--accent2),var(--accent)); color:#fff; font-size:10px; padding:4px 9px; border-radius:40px; letter-spacing:.5px; }
+    .actions { display:flex; gap:8px; padding:0 20px 18px; flex-wrap:wrap; }
+    .btn { text-decoration:none; font-size:11px; font-weight:600; padding:6px 12px; border-radius:6px; background:#f0f4f8; color:var(--accent); border:1px solid #d5dfe8; box-shadow:0 2px 6px rgba(0,0,0,.08); transition:.3s; display:inline-flex; align-items:center; gap:5px; }
+    .btn:hover { background:var(--accent); color:#fff; border-color:var(--accent); box-shadow:0 3px 10px rgba(44,95,124,.2); }
+    .badge { position:absolute; top:10px; left:10px; background:#fff; color:var(--accent); font-size:11px; padding:4px 8px; border-radius:6px; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,.15); }
+
+    .section-title { font-size:22px; font-weight:700; margin:50px 0 18px; background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+    footer { margin:40px 0 20px; text-align:center; font-size:12px; color:#666; }
+    footer a { color:var(--accent); text-decoration:none; }
+    footer a:hover { text-decoration:underline; }
+
+    @media print { nav, .actions, .badge, .stack span, header::after { display:none !important; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} .card{page-break-inside:avoid;} }
+    
+    .top-links { position:absolute; top:12px; right:14px; display:flex; gap:8px; z-index:10; }
+    .top-links a { font-size:11px; padding:6px 10px; background:rgba(255,255,255,0.85); color:var(--accent); border-radius:6px; text-decoration:none; border:1px solid #d0dee7; backdrop-filter:blur(4px); transition:.25s; }
+    .top-links a:hover { background:var(--accent2); color:#fff; }
+    
+    .lang-toggle { position:absolute; top:12px; left:14px; z-index:10; }
+    .lang-btn { font-size:11px; font-weight:600; padding:6px 12px; background:rgba(255,255,255,0.9); color:var(--accent); text-decoration:none; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:all 0.3s ease; display:inline-flex; align-items:center; gap:4px; }
+    .lang-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.15); }
+  </style>
+</head>
+<body>
+  <header role="banner" aria-label="Main header">
+    <div class="lang-toggle">
+      <a href="projetos_programacao.html" class="lang-btn">🇵🇹 Português</a>
+    </div>
+    
+    <div class="top-links" aria-label="Portfolio navigation">
+      <a href="cv-carlos-correia-en.html">← Back to CV</a>
+      <a href="projects-programming-en.html" aria-current="page">Programming Projects</a>
+      <a href="certificates-diplomas-en.html">Certificates & Diplomas</a>
+      <a href="academic-reports-en.html">Academic Reports</a>
+    </div>
+    
+    <h1>Programming Projects</h1>
+    <p class="tagline">Selection of projects developed in different languages and contexts: enterprise applications, games, administrative systems and web platforms. Focus on clean architecture, documentation, accessibility and scalability. This page complements the main CV.</p>
+    <nav aria-label="Secondary navigation">
+      <a href="cv-carlos-correia-en.html">← Back to CV</a>
+      <a href="#projects">Projects</a>
+      <a href="#future">Future Roadmap</a>
+    </nav>
+  </header>
+  
+  <main id="projects" role="main">
+    <div class="grid" aria-label="Project list">
+      <!-- MiniGfx SDL2 -->
+      <article class="card" aria-labelledby="minigfx-title">
+        <span class="badge">C++</span>
+        <figure class="letterbox game-preview" aria-label="Space Defender Screenshot">
+          <a href="project-space-defender-en.html" style="position:absolute;inset:0;z-index:1" aria-label="Open Space Defender detailed page"></a>
+          <div class="quick-links">
+            <a href="https://youtu.be/0URm-pwDgD4" target="_blank" rel="noopener" aria-label="Watch gameplay video on YouTube">🎥 Video</a>
+            <a href="https://github.com/cpnf4560/MiniGfx_SDL2" target="_blank" rel="noopener" aria-label="View repository on GitHub">🔗 Repo</a>
+          </div>
+          <img src="Imagens/minigfx.png" alt="Space Defender game with enemies and score" loading="lazy" class="static-preview">
+          <img src="Imagens/minigfx-gameplay.gif" alt="Animated Space Defender gameplay" loading="lazy" class="animated-preview">
+          <div class="play-overlay" title="Hover to see animated gameplay" aria-hidden="true">▶</div>
+        </figure>
+        <h2 id="minigfx-title"><a href="project-space-defender-en.html" style="text-decoration:none;color:inherit">Space Defender - MiniGfx SDL2 Engine</a></h2>
+        <div class="meta">STATUS: PROTOTYPE</div>
+        <p class="desc">2D arcade game in C++ using SDL2: dynamic speed management, collisions, animations, audio, fullscreen scaling, persistent highscore and modular architecture (GameManager, GameObjects). Foundation for future lightweight graphics engine.</p>
+        <div class="stack"><span>C++17</span><span>SDL2</span><span>SDL_mixer</span><span>SDL_image</span><span>Modular Architecture</span></div>
+        <div class="actions">
+          <a class="btn" href="https://github.com/cpnf4560/MiniGfx_SDL2" target="_blank" rel="noopener">🔗 Repository</a>
+          <a class="btn" href="#" aria-disabled="true" title="Future cross-platform build">💻 Build</a>
+        </div>
+      </article>
+
+      <!-- Futsal Manager -->
+      <article class="card" aria-labelledby="futsal-title">
+        <span class="badge">Node.js</span>
+        <figure aria-label="Futsal Manager Screenshot">
+          <a href="project-futsal-manager-en.html" style="position:absolute;inset:0" aria-label="Open Futsal Manager detailed page"></a>
+          <div class="quick-links">
+            <a href="https://peladasquintasfeiras.onrender.com" target="_blank" rel="noopener" aria-label="Open production application">🚀 Live</a>
+          </div>
+          <img src="Imagens/gestorfutsal.png" alt="Futsal manager statistics interface" loading="lazy">
+        </figure>
+        <h2 id="futsal-title"><a href="project-futsal-manager-en.html" style="text-decoration:none;color:inherit">Futsal Manager - Thursday Games</a></h2>
+        <div class="meta">STATUS: PRODUCTION (RENDER)</div>
+        <p class="desc">Complete web application for futsal game management: call-ups, real-time statistics, automated backup, performance analysis (TOP 3), bib systems and unavailability management. Focus on operational robustness and extensive documentation for fast support.</p>
+        <div class="stack"><span>Node.js</span><span>Express</span><span>SQLite/PostgreSQL</span><span>EJS</span><span>Batch Scripts</span></div>
+        <div class="actions">
+          <a class="btn" href="https://github.com/cpnf4560/peladasquintasfeiras" target="_blank" rel="noopener">🔗 Repository</a>
+          <a class="btn" href="https://peladasquintasfeiras.onrender.com" target="_blank" rel="noopener">🚀 Deploy</a>
+          <a class="btn" href="#" aria-disabled="true" title="PDF report coming soon">📄 PDF</a>
+        </div>
+      </article>
+
+      <!-- Task Manager -->
+      <article class="card" aria-labelledby="taskmanager-title">
+        <span class="badge">Java</span>
+        <figure aria-label="Task Manager Screenshot">
+          <a href="project-task-manager-en.html" style="position:absolute;inset:0" aria-label="Open Task Manager detailed page"></a>
+          <img src="Imagens/gestortarefas.png" alt="Task management application with Swing interface and Spring backend" loading="lazy">
+        </figure>
+        <h2 id="taskmanager-title"><a href="project-task-manager-en.html" style="text-decoration:none;color:inherit">Task Manager - Java Spring Boot + Swing</a></h2>
+        <div class="meta">STATUS: COMPLETED (UFCD 5425)</div>
+        <p class="desc">Hybrid application with Spring Boot backend and Swing desktop client: authentication, task and team management, permission-based profiles, i18n (378+ translations), CSV export and reports. Completed 20/20 UFCD 5425 requirements.</p>
+        <div class="stack"><span>Java 17</span><span>Spring Boot</span><span>Swing</span><span>MySQL/H2</span><span>Maven</span></div>
+        <div class="actions">
+          <a class="btn" href="#" aria-disabled="true" title="GitHub repository coming soon">🔗 Repository</a>
+          <a class="btn" href="#" aria-disabled="true" title="PDF report coming soon">📄 PDF</a>
+        </div>
+      </article>
+
+      <!-- Pizza System -->
+      <article class="card" aria-labelledby="pizza-title">
+        <span class="badge">Full Stack</span>
+        <figure aria-label="Pizza System Screenshot">
+          <a href="project-pizza-system-en.html" style="position:absolute;inset:0" aria-label="Open Pizza Order System detailed page"></a>
+          <img src="Imagens/pizzaria.png" alt="Pizza shop order system screen" loading="lazy">
+        </figure>
+        <h2 id="pizza-title"><a href="project-pizza-system-en.html" style="text-decoration:none;color:inherit">Order System - Pizzeria</a></h2>
+        <div class="meta">STATUS: EVOLVING</div>
+        <p class="desc">Full stack platform for customer management, orders, PT/EN translation, JWT authentication, admin panel and sales statistics. Future integration with payments and performance optimization.</p>
+        <div class="stack"><span>Node.js</span><span>Express</span><span>PostgreSQL/MySQL</span><span>HTML/CSS/JS</span><span>JWT</span><span>Java (Reports)</span></div>
+        <div class="actions">
+          <a class="btn" href="https://github.com/cpnf4560/sistema_pizzaria" target="_blank" rel="noopener">🔗 Repository</a>
+          <a class="btn" href="#" aria-disabled="true" title="Future public demo">🚀 Demo</a>
+          <a class="btn" href="#" aria-disabled="true" title="PDF report coming soon">📄 PDF</a>
+        </div>
+      </article>
+
+      <!-- Quest4Couple -->
+      <article class="card" aria-labelledby="quest4couple-title">
+        <span class="badge">Frontend</span>
+        <figure aria-label="Quest4Couple Screenshot">
+          <a href="project-quest4couple-en.html" style="position:absolute;inset:0" aria-label="Open Quest4Couple detailed page"></a>
+          <div class="quick-links">
+            <a href="https://quest4couple.onrender.com" target="_blank" rel="noopener" aria-label="Open Quest4Couple demo">🚀 Demo</a>
+          </div>
+          <img src="Imagens/quest4couple.png" alt="Smart Match interface and questionnaires" loading="lazy">
+        </figure>
+        <h2 id="quest4couple-title"><a href="project-quest4couple-en.html" style="text-decoration:none;color:inherit">Quest4Couple + Smart Match</a></h2>
+        <div class="meta">STATUS: PHASE 1 COMPLETE</div>
+        <p class="desc">Thematic questionnaire system (couples and individual), encryption, credit management, backoffice and Smart Match integration (demo). Extensive business documentation, UX and roadmap for evolution with Firebase and Stripe.</p>
+        <div class="stack"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Firebase (Planned)</span><span>Stripe (Planned)</span></div>
+        <div class="actions">
+          <a class="btn" href="https://github.com/cpnf4560/quest4couple" target="_blank" rel="noopener">🔗 Repository</a>
+          <a class="btn" href="https://quest4couple.onrender.com" target="_blank" rel="noopener">🚀 Demo</a>
+        </div>
+      </article>
+    </div>
+
+    <section id="future" aria-labelledby="future-title">
+      <h2 class="section-title" id="future-title">🚀 Future Roadmap</h2>
+      <ul style="list-style:disc; padding-left:22px; font-size:14px; line-height:1.5;">
+        <li>Add complete SQL commands page with filters and search.</li>
+        <li>Publish individual PDF reports per project (architecture, metrics, lessons learned).</li>
+        <li>Expand Space Defender to modular particle and level system.</li>
+        <li>Integrate Stripe + Firebase (Quest4Couple) and real-time dashboards.</li>
+        <li>Add automated tests and code coverage (Futsal / Pizza).</li>
+        <li>Optimize accessibility (WAI-ARIA) and generate summary version for printing.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2025 Carlos Correia. All rights reserved. • <a href="cv-carlos-correia-en.html">CV</a></p>
+  </footer>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
     <link rel="icon" type="image/png" href="Imagens/favicon.png" />
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #eef3f8; /* fundo neutro mais visível */
+            background-color: #eef3f8;
         }
 
         .container {
@@ -25,10 +25,9 @@
             background-color: white;
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             backdrop-filter: blur(2px);
-            position: relative; /* necessário para as barras laterais */
+            position: relative;
         }
 
-        /* Barras laterais visíveis ao lado do CV */
         .container::before,
         .container::after {
             content: "";
@@ -39,13 +38,11 @@
             pointer-events: none;
         }
 
-        /* Esquerda (ao lado da barra azul) */
         .container::before {
             right: 100%;
             background: linear-gradient(180deg, rgba(44,95,124,0.18) 0%, rgba(44,95,124,0.10) 100%), #d3e5f1;
         }
 
-        /* Direita (ao lado do conteúdo principal) */
         .container::after {
             left: 100%;
             background: linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.03) 100%), #eef2f7;
@@ -58,20 +55,23 @@
 
         @media (max-width: 768px) {
             .container::before,
-            .container::after { display: none; } /* esconde em ecrãs pequenos */
+            .container::after { display: none; }
         }
 
         .header {
             display: grid;
-            grid-template-columns: 340px 1fr; /* largura da sidebar aumentada (antes 300px) */
+            grid-template-columns: 340px 1fr;
             gap: 0;
-        }        .sidebar {
+        }
+
+        .sidebar {
             background: linear-gradient(180deg, var(--accent) 0%, #21506a 60%, #193d52 100%);
             color: white;
             padding: 40px 30px;
             position: relative;
             overflow: hidden;
-        }        /* Degradê animado com múltiplas camadas - estilo "aurora" */
+        }
+
         .sidebar::before {
             content: "";
             position: absolute;
@@ -112,7 +112,8 @@
                 transform: translate(-5%, 15%) rotate(240deg) scale(1.05);
                 opacity: 0.7;
             }
-        }        /* Efeito spotlight com dupla camada - halo + centro brilhante */
+        }
+
         .sidebar::after {
             content: "";
             position: absolute;
@@ -135,7 +136,6 @@
             transition: opacity 0.5s ease, left 0.12s ease, top 0.12s ease, transform 0.3s ease;
             pointer-events: none;
             z-index: 1;
-            
         }
 
         .sidebar:hover::after {
@@ -146,19 +146,17 @@
         @keyframes spotlightPulse {
             0%, 100% { 
                 transform: translate(-50%, -50%) scale(1);
-                
             }
             50% { 
                 transform: translate(-50%, -50%) scale(1.15);
-                
             }
         }
 
-        /* Garantir que o conteúdo fica acima dos efeitos */
         .sidebar > * {
             position: relative;
             z-index: 2;
-        }        /* Ondas decorativas com efeito de "brilho pulsante" */
+        }
+
         .sidebar-waves {
             position: absolute;
             inset: 0;
@@ -176,22 +174,18 @@
             0%, 100% { 
                 transform: scale(1) translateY(0) rotate(0deg);
                 opacity: 0.5;
-                
             }
             25% {
                 transform: scale(1.08) translateY(-8px) rotate(2deg);
                 opacity: 0.7;
-                
             }
             50% { 
                 transform: scale(1.15) translateY(-15px) rotate(-2deg);
                 opacity: 0.9;
-                
             }
             75% {
                 transform: scale(1.08) translateY(-8px) rotate(1deg);
                 opacity: 0.7;
-                
             }
         }
 
@@ -235,8 +229,8 @@
             color: white;
             font-size: 16px;
             font-weight: bold;
-            margin: 30px 0 15px; /* revertido */
-            padding-bottom: 10px; /* revertido */
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
             border-bottom: 2px solid #4a8db3;
             display: flex;
             align-items: center;
@@ -253,20 +247,20 @@
 
         .sidebar-content h4 {
             font-size: 15px;
-            margin-bottom: 5px; /* revertido */
+            margin-bottom: 5px;
         }
 
         .sidebar-content p {
             font-size: 13px;
             color: #ddd;
-            margin-bottom: 15px; /* revertido */
+            margin-bottom: 15px;
             text-align: justify;
             text-justify: inter-word;
             hyphens: auto;
             -webkit-hyphens: auto;
             -ms-hyphens: auto;
         }
-        /* Não justificar o texto nas Referências */
+
         .sidebar-content.references p { text-align: left; text-justify: auto; }
 
         .skill-item {
@@ -320,8 +314,8 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.04);
         }
 
-        .resume-section { margin-bottom: 20px; padding-bottom:15px; } /* reduzir espaço interno inferior */
-        .experience-section { margin-bottom: 25px; padding-top:18px; margin-top:-8px; } /* aproxima a secção seguinte ao resumo */
+        .resume-section { margin-bottom: 20px; padding-bottom:15px; }
+        .experience-section { margin-bottom: 25px; padding-top:18px; margin-top:-8px; }
 
         .section-title {
             font-size: 20px;
@@ -469,7 +463,7 @@
 
         @media (max-width: 1200px) {
             body {
-                background: #e0ebf2; /* simplifica em telas pequenas */
+                background: #e0ebf2;
             }
         }
 
@@ -489,15 +483,14 @@
         .languages .bar { background:rgba(255,255,255,0.25); border-radius:6px; height:8px; overflow:hidden; margin-top:6px; }
         .languages .bar .fill { height:100%; background:linear-gradient(90deg,var(--accent2),var(--accent)); width:var(--pct); transition:width .8s ease; }
 
-        /* Fix ícones (evitar itálico e herança de gradiente) */
         i { font-style: normal; }
 
-        /* Tornar todos os links na sidebar legíveis e clicáveis */
         .sidebar a { color: #fff; text-decoration: none; }
-        .sidebar a:hover { text-decoration: underline; }        .btn-projetos { display:inline-block; margin-left:6px; font-size:11px; background:var(--accent2); color:#fff; padding:3px 8px; border-radius:6px; text-decoration:none; line-height:1; }
+        .sidebar a:hover { text-decoration: underline; }
+
+        .btn-projetos { display:inline-block; margin-left:6px; font-size:11px; background:var(--accent2); color:#fff; padding:3px 8px; border-radius:6px; text-decoration:none; line-height:1; }
         .btn-projetos:hover { background:var(--accent); }
 
-        /* Botões de navegação no topo - mais destaque */
         .top-nav-buttons {
             position:absolute; 
             top:12px; 
@@ -563,15 +556,15 @@
             .lang-toggle { top:8px; left:8px; }
             .lang-btn { font-size:10px; padding:5px 10px; }
         }
-    </style>    <script>
-        // Efeito de spotlight que segue o cursor na sidebar
+    </style>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.querySelector('.sidebar');
             if (!sidebar) return;
 
             let mouseX = 0, mouseY = 0;
             let currentX = 0, currentY = 0;
-            const smoothing = 0.15; // Suavização do movimento
+            const smoothing = 0.15;
 
             sidebar.addEventListener('mousemove', function(e) {
                 const rect = sidebar.getBoundingClientRect();
@@ -587,7 +580,6 @@
                 sidebar.style.setProperty('--spotlight-active', '0');
             });
 
-            // Animação suave do spotlight
             function animate() {
                 currentX += (mouseX - currentX) * smoothing;
                 currentY += (mouseY - currentY) * smoothing;
@@ -606,18 +598,16 @@
         <div class="header">
             <!-- Language Toggle -->
             <div class="lang-toggle">
-                <a href="cv-carlos-correia-en.html" class="lang-btn">🇬🇧 English</a>
+                <a href="cv-carlos-correia.html" class="lang-btn">🇵🇹 Português</a>
             </div>
 
-            <!-- Botões navegação com destaque -->
+            <!-- Navigation Buttons -->
             <div class="top-nav-buttons">
-                <a href="projetos_programacao.html" class="top-nav-btn">📂 Projetos</a>
-                <a href="certificados_diplomas.html" class="top-nav-btn">🎓 Certificados</a>
-                <a href="projetos_relatorios_academicos.html" class="top-nav-btn">📄 Relatórios</a>
+                <a href="projects-programming-en.html" class="top-nav-btn">📂 Projects</a>
+                <a href="certificates-diplomas-en.html" class="top-nav-btn">🎓 Certificates</a>
+                <a href="academic-reports-en.html" class="top-nav-btn">📄 Reports</a>
             </div>
-            <div class="lang-toggle">
-                <a href="#" class="lang-btn">🌐 PT</a>
-            </div>
+
             <!-- Sidebar -->
             <div class="sidebar">
                 <div class="sidebar-waves"></div>
@@ -626,7 +616,7 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <i>🏠</i>
-                        <span>Penafiel, 23 agosto 1989<br>(36 anos)</span>
+                        <span>Penafiel, Portugal<br>August 23, 1989 (36 years)</span>
                     </div>
                     <div class="contact-item">
                         <i>✉️</i>
@@ -638,74 +628,76 @@
                     </div>
                 </div>
 
-                <h3 class="section-title-sidebar"><i>🎓</i> FORMAÇÃO ACADÉMICA</h3>
+                <h3 class="section-title-sidebar"><i>🎓</i> EDUCATION</h3>
                 <div class="sidebar-content">
-                    <h4>2017 | 2019<br>GESTÃO E NEGÓCIO DE PME</h4>
-                    <p>Técnico Superior Profissional | EQF/ISCED Nível 5</p>
+                    <h4>2017 | 2019<br>SME MANAGEMENT AND BUSINESS</h4>
+                    <p>Higher Professional Technician | EQF/ISCED Level 5</p>
 
-                    <h4>ESTG - Instituto Politécnico do Porto</h4>
-                    <p>Escola Superior de Tecnologia e Gestão de Felgueiras</p>
+                    <h4>ESTG - Polytechnic Institute of Porto</h4>
+                    <p>School of Technology and Management of Felgueiras</p>
 
-                    <h4>Unidades Curriculares [Área Técnica]:</h4>
-                    <p>Contabilidade e Análise Financeira | Cálculo Financeiro | Direito Empresarial | Ferramentas de Gestão | Sistemas de Informação | Gestão de Vendas | Marketing | Negociação | Inovação e Empreendedorismo | Gestão Estratégica | Distribuição e Logística | Higiene, Segurança e Qualidade no Trabalho</p>
+                    <h4>Curricular Units [Technical Area]:</h4>
+                    <p>Accounting and Financial Analysis | Financial Calculus | Business Law | Management Tools | Information Systems | Sales Management | Marketing | Negotiation | Innovation and Entrepreneurship | Strategic Management | Distribution and Logistics | Hygiene, Safety and Quality at Work</p>
                 </div>
 
-                <h3 class="section-title-sidebar"><i>📋</i> OUTRAS QUALIFICAÇÕES</h3>
+                <h3 class="section-title-sidebar"><i>📋</i> OTHER QUALIFICATIONS</h3>
                 <div class="sidebar-content">
-                    <h4>LINGUAGENS DE PROGRAMAÇÃO - JAVA <a class="btn-projetos" href="projetos_programacao.html">ver projetos</a></h4>
-                    <p>EQF/ISCED - Nível 5 | 350 horas | 19 valores<br>IEFP, IP | 2025</p>
+                    <h4>PROGRAMMING LANGUAGES - JAVA <a class="btn-projetos" href="projects-programming-en.html">view projects</a></h4>
+                    <p>EQF/ISCED - Level 5 | 350 hours | Grade: 19/20<br>IEFP, IP | 2025</p>
 
-                    <h4>CONTABILIDADE E FISCALIDADE</h4>
-                    <p>EQF/ISCED - Nível 3 | 225 horas<br>Associação Empresarial de Penafiel | 2014</p>
+                    <h4>ACCOUNTING AND TAXATION</h4>
+                    <p>EQF/ISCED - Level 3 | 225 hours<br>Business Association of Penafiel | 2014</p>
 
-                    <h4>INFORMÁTICA E GESTÃO DE REDES</h4>
-                    <p>EQF/ISCED - Nível 3 | 180 horas<br>Filomarketing, Lda. | 2010</p>
+                    <h4>IT AND NETWORK MANAGEMENT</h4>
+                    <p>EQF/ISCED - Level 3 | 180 hours<br>Filomarketing, Lda. | 2010</p>
 
-                    <h4>ECONOMIA DIGITAL</h4>
-                    <p>100 Horas<br>CFGE, Lda. | 2018</p>                    <h4>CERTIFICADO DE COMPETÊNCIAS PEDAGÓGICAS</h4>
-                    <p>Escola de Negócios e Administração, Lda.<br>CCP n.º F682998/2019</p>
+                    <h4>DIGITAL ECONOMY</h4>
+                    <p>100 Hours<br>CFGE, Lda. | 2018</p>
+
+                    <h4>PEDAGOGICAL SKILLS CERTIFICATE</h4>
+                    <p>Business and Administration School, Ltd.<br>CCP No. F682998/2019</p>
                 </div>
 
-                <h3 class="section-title-sidebar"><i>🌍</i> LÍNGUAS</h3>
+                <h3 class="section-title-sidebar"><i>🌍</i> LANGUAGES</h3>
                 <div class="sidebar-content languages">
                     <div class="lang">
-                        <span><strong>Inglês:</strong> B2 (Intermédio Avançado)</span>
+                        <span><strong>English:</strong> B2 (Upper Intermediate)</span>
                         <div class="bar"><div class="fill" style="--pct:80%"></div></div>
                     </div>
                     <div class="lang">
-                        <span><strong>Espanhol:</strong> A2 (Básico - conversação e escrita)</span>
+                        <span><strong>Spanish:</strong> A2 (Basic - conversation and writing)</span>
                         <div class="bar"><div class="fill" style="--pct:35%"></div></div>
                     </div>
                 </div>
 
                 <h3 class="section-title-sidebar"><i>💡</i> SOFT SKILLS</h3>
                 <div class="sidebar-content">
-                    <p>Organização e capacidade analítica<br>
-                    Capacidade de resolução de problemas<br>
-                    Relacionamento interpessoal e trabalho em equipa</p>
+                    <p>Organization and analytical skills<br>
+                    Problem-solving ability<br>
+                    Interpersonal relationships and teamwork</p>
                 </div>
 
                 <h3 class="section-title-sidebar"><i>🔧</i> HARD SKILLS</h3>
                 <div class="sidebar-content">
-                    <p>Experiência híbrida em gestão financeira, contabilidade, área comercial, logística e marketing.<br>
-                    Experiência sólida em mercados internacionais.<br>
-                    Domínio e desenvolvimento de vários programas informáticos e ERPs.</p>
+                    <p>Hybrid experience in financial management, accounting, commercial area, logistics and marketing.<br>
+                    Solid experience in international markets.<br>
+                    Proficiency and development of various IT programs and ERPs.</p>
                 </div>
-                <!-- Secção de Prémios movida para a sidebar -->
-                <h3 class="section-title-sidebar"><i>🏆</i> PRÉMIOS</h3>
+
+                <h3 class="section-title-sidebar"><i>🏆</i> AWARDS</h3>
                 <div class="sidebar-content">
-                    <p>Melhor performance Individual Grand Royale London (Tripadvisor, Cartão Cliente, Upselling Pq. Almoços) Setembro de 2016, outubro de 2016, novembro de 2016 e dezembro 2016.</p>
-                    <p>Melhor performance da cadeia de hotéis em Out/2016</p>
+                    <p>Best Individual Performance Grand Royale London (Tripadvisor, Customer Card, Breakfast Upselling) September 2016, October 2016, November 2016 and December 2016.</p>
+                    <p>Best performance in the hotel chain in Oct/2016</p>
                 </div>
-                <!-- Referências movidas para a sidebar -->
-                <h3 class="section-title-sidebar"><i>📞</i> REFERÊNCIAS</h3>
+
+                <h3 class="section-title-sidebar"><i>📞</i> REFERENCES</h3>
                 <div class="sidebar-content references">
                     <p><strong>Shaftesbury Hotels | Montcalm Luxury Hotels</strong><br>
                     Ms. Nema da Silva — General Area Manager | <a href="tel:+447940414334">+44 7940414334</a> | <a href="mailto:nema@shaftesburyhotels.com">nema@shaftesburyhotels.com</a></p>
                     <p><strong>Magasteel, Lda.</strong><br>
-                    Dr. Joaquim Bessa Ribeiro — Diretor Financeiro | <a href="tel:+351912472483">+351 912 472 483</a></p>
+                    Dr. Joaquim Bessa Ribeiro — Financial Director | <a href="tel:+351912472483">+351 912 472 483</a></p>
                     <p><strong>Altaroda, SA.</strong><br>
-                    Pedro Lopes — Assessor da Administração | <a href="tel:+351916682483">+351 916 682 483</a></p>
+                    Pedro Lopes — Management Advisor | <a href="tel:+351916682483">+351 916 682 483</a></p>
                 </div>
             </div>
 
@@ -713,64 +705,64 @@
             <div class="main-content">
                 <div class="name-header">
                     <h1>CARLOS CORREIA</h1>
-                    <p class="job-title">Técnico Superior de Gestão e Negócio de PME</p>
+                    <p class="job-title">Senior Technician in SME Management and Business</p>
                 </div>
 
-                <!-- Resumo Profissional -->
+                <!-- Professional Summary -->
                 <section class="section resume-section">
-                    <h2 class="section-title">📄 RESUMO PROFISSIONAL</h2>
-                    <p>Profissional com experiência transversal na gestão de PME, focado em organização, melhoria de processos e resultados. Atuação direta em: Gestão Comercial; Concursos Públicos; Gestão Financeira; Contabilidade; Compras e Logística; Produção; Marketing; Recursos Humanos; Qualidade; E-Commerce e operações de Hotelaria. Experiência internacional, comunicação fluente em inglês e histórico de desempenho reconhecido.</p>
+                    <h2 class="section-title">📄 PROFESSIONAL SUMMARY</h2>
+                    <p>Professional with cross-functional experience in SME management, focused on organization, process improvement and results. Direct action in: Commercial Management; Public Tenders; Financial Management; Accounting; Purchasing and Logistics; Production; Marketing; Human Resources; Quality; E-Commerce and Hospitality operations. International experience, fluent English communication and recognized performance track record.</p>
                 </section>
 
-                <!-- Experiência Profissional -->
+                <!-- Professional Experience -->
                 <section class="section experience-section">
-                    <h2 class="section-title">💼 EXPERIÊNCIA PROFISSIONAL</h2>
+                    <h2 class="section-title">💼 PROFESSIONAL EXPERIENCE</h2>
 
                     <div class="job-entry">
                         <div class="job-header">
-                            <h3>Técnico Superior de Gestão e Negócio de PME</h3>
+                            <h3>Senior Technician in SME Management and Business</h3>
                             <p class="company">MEDINOVA, LDA.</p>
-                            <p class="date">Serviços especializados em Medicina no Trabalho, Segurança no Trabalho e Segurança Alimentar, Controlo Pragas e Desinfestação, Segurança contra Incêndios e Formação.<br>De 11/2023 a 11/2024.</p>
+                            <p class="date">Specialized services in Occupational Medicine, Occupational Safety and Food Safety, Pest Control and Disinfection, Fire Safety and Training.<br>From 11/2023 to 11/2024.</p>
                         </div>
                         <div class="activities">
-                            <strong>Atividades Principais:</strong>
+                            <strong>Main Activities:</strong>
                             <ul>
-                                <li><strong>Gestão Comercial:</strong> Responsável pela gestão administrativa de propostas de serviços e contratos.</li>
-                                <li><strong>Gestão de Concursos Públicos:</strong> Coordenação de propostas em concursos públicos.</li>
+                                <li><strong>Commercial Management:</strong> Responsible for administrative management of service proposals and contracts.</li>
+                                <li><strong>Public Tender Management:</strong> Coordination of proposals in public tenders.</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="job-entry">
                         <div class="job-header">
-                            <h3>Técnico Superior de Gestão e Negócio de PME</h3>
-                            <p class="company">MAGASTEEL, SOLUÇÕES EM TUBOS DE AÇO, LDA.</p>
-                            <p class="date">Comércio de tubos de aço carbono<br>De 09/2021 a 11/2023.</p>
+                            <h3>Senior Technician in SME Management and Business</h3>
+                            <p class="company">MAGASTEEL, STEEL TUBE SOLUTIONS, LDA.</p>
+                            <p class="date">Carbon steel tubes trade<br>From 09/2021 to 11/2023.</p>
                         </div>
                         <div class="activities">
-                            <strong>Atividades Principais:</strong>
+                            <strong>Main Activities:</strong>
                             <ul>
-                                <li><strong>Gestão Financeira:</strong> Gestão de créditos, factoring, confirming, leasing, contas caucionadas.</li>
-                                <li><strong>Contabilidade:</strong> Faturação, controlo de contas, Intrastat, IVA, controlo do inventário.</li>
-                                <li><strong>Logística:</strong> Gestão de compras e vendas, transportes (gestão de cargas e documentação aduaneira).</li>
-                                <li><strong>Produção:</strong> Planificação, elaboração de ordens de produção, circuito de produção em ERP.</li>
-                                <li><strong>Marketing:</strong> Gestão comercial (clientes), prospeção, website, produção de conteúdo gráfico.</li>
-                                <li><strong>Recursos Humanos:</strong> Processamento salarial, recrutamento, formação.</li>
+                                <li><strong>Financial Management:</strong> Credit management, factoring, confirming, leasing, collateralized accounts.</li>
+                                <li><strong>Accounting:</strong> Invoicing, account control, Intrastat, VAT, inventory control.</li>
+                                <li><strong>Logistics:</strong> Purchasing and sales management, transportation (cargo management and customs documentation).</li>
+                                <li><strong>Production:</strong> Planning, preparation of production orders, production circuit in ERP.</li>
+                                <li><strong>Marketing:</strong> Commercial management (clients), prospecting, website, graphic content production.</li>
+                                <li><strong>Human Resources:</strong> Payroll processing, recruitment, training.</li>
                             </ul>
-                            <p class="date" style="margin-top: 10px;">* Faturação de 4,6M€ em 2021, com apenas 2 funcionários, desde a mudança de CAE da empresa em maio de 2021.</p>
+                            <p class="date" style="margin-top: 10px;">* Revenue of €4.6M in 2021, with only 2 employees, since the company's business activity code change in May 2021.</p>
                         </div>
                     </div>
 
                     <div class="job-entry">
                         <div class="job-header">
-                            <h3>Técnico Administrativo</h3>
+                            <h3>Administrative Technician</h3>
                             <p class="company">SATFIEL, LDA.</p>
-                            <p class="date">Reparação de eletrodomésticos (03/2021 a 09/2021)</p>
+                            <p class="date">Home appliance repair (03/2021 to 09/2021)</p>
                         </div>
                         <div class="activities">
-                            <strong>Atividades Principais:</strong>
+                            <strong>Main Activities:</strong>
                             <ul>
-                                <li><strong>Assistente de Contabilidade e Dept. RH:</strong> Faturação | Estatísticas | Aprovação de Folhas de Obra</li>
+                                <li><strong>Accounting and HR Dept. Assistant:</strong> Invoicing | Statistics | Work Sheet Approval</li>
                             </ul>
                         </div>
                     </div>
@@ -778,48 +770,48 @@
                     <div class="job-entry">
                         <div class="job-header">
                             <p class="company">ALTARODA, S.A.</p>
-                            <p class="date">Comércio de Equipamentos e Consumíveis Setor Automóvel<br>De 01/2015 a 10/2015 e de 04/2017 a 03/2021</p>
+                            <p class="date">Trade of Equipment and Consumables for the Automotive Sector<br>From 01/2015 to 10/2015 and from 04/2017 to 03/2021</p>
                         </div>
                         <div class="activities">
-                            <strong>Atividades Principais:</strong>
+                            <strong>Main Activities:</strong>
                             <ul>
-                                <li><strong>Compras e Logística:</strong> Controlo de stocks e gestão de encomendas.</li>
-                                <li><strong>Qualidade:</strong> Gestão de reclamações, traduções e auditorias. Empresa com certificação ISO9001.</li>
-                                <li><strong>Marketing:</strong> Desenvolvimento de catálogos, flyers e organização de eventos.</li>
-                                <li><strong>E-Commerce:</strong> Criação e gestão do site www.altaroda.pt e comunicação digital.</li>
+                                <li><strong>Purchasing and Logistics:</strong> Stock control and order management.</li>
+                                <li><strong>Quality:</strong> Complaint management, translations and audits. Company with ISO9001 certification.</li>
+                                <li><strong>Marketing:</strong> Development of catalogs, flyers and event organization.</li>
+                                <li><strong>E-Commerce:</strong> Creation and management of www.altaroda.pt website and digital communication.</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="job-entry">
                         <div class="job-header">
-                            <h3>Supervisor de Turno | Chefe de Turno | Night Auditor</h3>
+                            <h3>Shift Supervisor | Shift Manager | Night Auditor</h3>
                             <p class="company">SHAFTESBURY HOTELS LONDON LIMITED</p>
-                            <p class="date">Shaftesbury Hotels | Park Grand Hotels | Montcalm Luxury Hotels (24 propriedades em 2017)<br>De 12/2011 a 10/2012; de 03/2013 a 01/2014 e de 03/2016 a 03/2017 (total de 2 anos e 8 meses)</p>
+                            <p class="date">Shaftesbury Hotels | Park Grand Hotels | Montcalm Luxury Hotels (24 properties in 2017)<br>From 12/2011 to 10/2012; from 03/2013 to 01/2014 and from 03/2016 to 03/2017 (total of 2 years and 8 months)</p>
                         </div>
-                        <p class="job-description">Progressão de carreira desde Night Porter/Auditor até Supervisor de Turno, com responsabilidades crescentes em atendimento a clientes, gestão de tesouraria, auditoria, gestão de reclamações, formação de equipas e supervisão multi-hotel. Inclui experiência em liderança de equipas de receção e formação em Duty Management.</p>
+                        <p class="job-description">Career progression from Night Porter/Auditor to Shift Supervisor, with increasing responsibilities in customer service, treasury management, auditing, complaint management, team training and multi-hotel supervision. Includes experience in front desk team leadership and Duty Management training.</p>
                         <div class="activities">
-                            <strong>Atividades Principais:</strong>
+                            <strong>Main Activities:</strong>
                             <ul>
-                                <li><strong>Night Porter:</strong> Serviços de quarto, apoio aos hóspedes.</li>
-                                <li><strong>Night Auditor:</strong> Atendimento a hóspedes, gestão de tesouraria e auditoria noturna.</li>
-                                <li><strong>Senior Night Auditor:</strong> Gestão de reclamações de clientes e formação de novos funcionários.</li>
-                                <li><strong>Chefe de Turno de Receção:</strong> Gestão de equipas de receção e formação de novos rececionistas.</li>
-                                <li><strong>Supervisor de Turno Noturno:</strong> Liderança e supervisão de equipas em cinco unidades hoteleiras, com responsabilidades de formação a gerentes de outros departamentos.</li>
-                                <li><strong>Duty Manager Trainee:</strong> Desenvolvimento de competências em gestão de reclamações e feedback de clientes, e controlo de performance de equipas.</li>
+                                <li><strong>Night Porter:</strong> Room service, guest support.</li>
+                                <li><strong>Night Auditor:</strong> Guest service, treasury management and night audit.</li>
+                                <li><strong>Senior Night Auditor:</strong> Customer complaint management and new employee training.</li>
+                                <li><strong>Front Desk Shift Manager:</strong> Front desk team management and new receptionist training.</li>
+                                <li><strong>Night Shift Supervisor:</strong> Team leadership and supervision in five hotel units, with training responsibilities for managers from other departments.</li>
+                                <li><strong>Duty Manager Trainee:</strong> Development of skills in complaint management and customer feedback, and team performance control.</li>
                             </ul>
                         </div>
                     </div>
                 </section>
 
-                <!-- Outras Experiências Profissionais -->
+                <!-- Other Professional Experiences -->
                 <section class="section">
-                    <h2 class="section-title">🧰 OUTRAS EXPERIÊNCIAS PROFISSIONAIS</h2>
+                    <h2 class="section-title">🧰 OTHER PROFESSIONAL EXPERIENCES</h2>
                     <ul>
-                        <li><strong>Técnico de Arqueologia:</strong> 2006–2010 — 7 trabalhos de campo | 2 trabalhos em laboratório</li>
-                        <li><strong>Distribuição:</strong> 2009 — Carmoplantas — Distribuição de Plantas Ornamentais</li>
-                        <li><strong>Call Center:</strong> 2009–2010 — Novabase — Apoio ao Cliente TV‑Net‑Voz (ZON TV Cabo)</li>
-                        <li><strong>Parque de Diversões:</strong> 2010 and 2011 — Bracalândia — Operador de Divertimentos</li>
+                        <li><strong>Archaeology Technician:</strong> 2006–2010 — 7 field works | 2 laboratory works</li>
+                        <li><strong>Distribution:</strong> 2009 — Carmoplantas — Ornamental Plants Distribution</li>
+                        <li><strong>Call Center:</strong> 2009–2010 — Novabase — TV-Net-Voice Customer Support (ZON TV Cabo)</li>
+                        <li><strong>Amusement Park:</strong> 2010 and 2011 — Bracalândia — Amusement Operator</li>
                         <li><strong>Call Center:</strong> 2012 — Access Self Storage — Remote Security Center</li>
                         <li><strong>Handyman:</strong> 2011 and 2016 — Modesto, California</li>
                     </ul>

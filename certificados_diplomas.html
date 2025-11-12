@@ -15,6 +15,9 @@
     .top-links { position:absolute; top:12px; right:14px; display:flex; gap:8px; z-index:10; }
     .top-links a { font-size:11px; padding:6px 10px; background:rgba(255,255,255,0.85); color:var(--accent); border-radius:6px; text-decoration:none; border:1px solid #d0dee7; backdrop-filter:blur(4px); transition:.25s; }
     .top-links a:hover { background:var(--accent2); color:#fff; }
+    .lang-toggle { position:absolute; top:12px; left:14px; z-index:10; }
+    .lang-btn { font-size:11px; font-weight:600; padding:6px 12px; background:rgba(255,255,255,0.9); color:var(--accent); text-decoration:none; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:all 0.3s ease; display:inline-flex; align-items:center; gap:4px; }
+    .lang-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.15); }
     h1 { font-size:36px; }
 
     main { max-width:1200px; margin:-40px auto 60px; background:#fff; padding:32px 40px; border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.12); }
@@ -28,16 +31,23 @@
     footer a { color:var(--accent); text-decoration:none; }
     footer a:hover { text-decoration:underline; }
 
-    @media print { .top-links { display:none; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} }
+    @media print { .top-links { display:none; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} .lang-toggle { display:none; } }
   </style>
 </head>
 <body>
   <header>
+    <div class="lang-toggle">
+      <a href="certificates-diplomas-en.html" class="lang-btn">🇬🇧 English</a>
+    </div>
+    
     <div class="top-links" aria-label="Navegação entre páginas do portfólio">
       <a href="cv-carlos-correia.html">← Voltar ao CV</a>
       <a href="projetos_programacao.html">Projetos de Programação</a>
       <a href="certificados_diplomas.html" aria-current="page">Certificados e Diplomas</a>
       <a href="projetos_relatorios_academicos.html">Projetos e Relatórios Académicos</a>
+    </div>
+    <div class="lang-toggle">
+      <a href="#" class="lang-btn">EN</a>
     </div>
     <h1>Certificados e Diplomas</h1>
   </header>
