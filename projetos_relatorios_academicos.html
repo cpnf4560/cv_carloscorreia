@@ -22,14 +22,12 @@
     .grid { display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
     .doc { border:1px solid #d2dde6; border-radius:12px; padding:14px; background:#f8fbfe; box-shadow:0 4px 12px rgba(0,0,0,.06); position:relative; }
     .doc h2 { font-size:16px; color:var(--accent); margin-bottom:8px; }
-    .doc-preview { width:100%; aspect-ratio:4/3; border:0; background:#fff; border-radius:8px; overflow:hidden; position:relative; cursor:pointer; }
-    .doc-preview iframe { width:100%; height:100%; border:0; pointer-events:none; }
-    .doc-overlay { position:absolute; inset:0; background:rgba(0,0,0,0); transition:all 0.3s ease; display:flex; align-items:center; justify-content:center; }
-    .doc-preview:hover .doc-overlay { background:rgba(44,95,124,0.85); }
-    .doc-actions { opacity:0; transform:scale(0.9); transition:all 0.3s ease; display:flex; gap:10px; }
-    .doc-preview:hover .doc-actions { opacity:1; transform:scale(1); }
-    .doc-btn { padding:8px 16px; background:#fff; color:var(--accent); border-radius:6px; text-decoration:none; font-size:12px; font-weight:600; display:flex; align-items:center; gap:6px; transition:all 0.2s ease; }
-    .doc-btn:hover { background:var(--accent2); color:#fff; transform:translateY(-2px); }
+    .doc-preview { width:100%; aspect-ratio:4/3; border:0; background:#fff; border-radius:8px; overflow:hidden; position:relative; }
+    .doc-preview iframe { width:100%; height:100%; border:0; pointer-events:auto; }
+    .doc-actions { position:absolute; top:8px; right:8px; display:flex; gap:8px; opacity:0; transform:translateY(-4px); transition:all 0.3s ease; z-index:10; }
+    .doc-preview:hover .doc-actions { opacity:1; transform:translateY(0); }
+    .doc-btn { padding:6px 12px; background:rgba(255,255,255,0.95); color:var(--accent); border-radius:6px; text-decoration:none; font-size:11px; font-weight:600; display:flex; align-items:center; gap:5px; transition:all 0.2s ease; box-shadow:0 2px 8px rgba(0,0,0,0.15); backdrop-filter:blur(4px); }
+    .doc-btn:hover { background:var(--accent2); color:#fff; transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.25); }
     .legend { font-size:12px; color:#555; margin-top:8px; text-align:justify; hyphens:auto; }
 
     footer { margin:40px 0 20px; text-align:center; font-size:12px; color:#666; }    footer a { color:var(--accent); text-decoration:none; }
@@ -54,52 +52,44 @@
 
   <main>    <div class="grid" aria-label="Lista de documentos académicos" id="acad-grid">      <article class="doc" data-date="2025-10-01">
         <h2>Relatório Gestor de Tarefas - Java Spring Boot + Swing</h2>
-        <div class="doc-preview" onclick="window.open('Docs/Relatorio Gestor Tarefas JAVA.pdf', '_blank')">
+        <div class="doc-preview">
           <iframe title="Relatório Gestor de Tarefas - Java" src="Docs/Relatorio Gestor Tarefas JAVA.pdf"></iframe>
-          <div class="doc-overlay">
-            <div class="doc-actions">
-              <a href="Docs/Relatorio Gestor Tarefas JAVA.pdf" target="_blank" class="doc-btn" onclick="event.stopPropagation()">👁️ Abrir</a>
-              <a href="Docs/Relatorio Gestor Tarefas JAVA.pdf" download class="doc-btn" onclick="event.stopPropagation()">⬇️ Download</a>
-            </div>
+          <div class="doc-actions">
+            <a href="Docs/Relatorio Gestor Tarefas JAVA.pdf" target="_blank" class="doc-btn">👁️ Abrir</a>
+            <a href="Docs/Relatorio Gestor Tarefas JAVA.pdf" download class="doc-btn">⬇️ Download</a>
           </div>
         </div>
         <p class="legend"><time datetime="2025-10-01">Out 2025</time> · Relatório do projeto Gestor de Tarefas (Java 17, Spring Boot, Swing). Arquitetura, requisitos UFCD 5425 e métricas.</p>
       </article>
       <article class="doc" data-date="2019-06-01">
         <h2>CCP - Projeto de Intervenção</h2>
-        <div class="doc-preview" onclick="window.open('Docs/CCP - Projeto Intervencao.pdf', '_blank')">
+        <div class="doc-preview">
           <iframe title="CCP - Projeto de Intervenção" src="Docs/CCP - Projeto Intervencao.pdf"></iframe>
-          <div class="doc-overlay">
-            <div class="doc-actions">
-              <a href="Docs/CCP - Projeto Intervencao.pdf" target="_blank" class="doc-btn" onclick="event.stopPropagation()">👁️ Abrir</a>
-              <a href="Docs/CCP - Projeto Intervencao.pdf" download class="doc-btn" onclick="event.stopPropagation()">⬇️ Download</a>
-            </div>
+          <div class="doc-actions">
+            <a href="Docs/CCP - Projeto Intervencao.pdf" target="_blank" class="doc-btn">👁️ Abrir</a>
+            <a href="Docs/CCP - Projeto Intervencao.pdf" download class="doc-btn">⬇️ Download</a>
           </div>
         </div>
         <p class="legend"><time datetime="2019-06-01">Jun 2019</time> · Projeto de intervenção pedagógica desenvolvido no curso CCP.</p>
       </article>
       <article class="doc" data-date="2019-09-01">
         <h2>Relatório Gestão Marketing - ALTARODA</h2>
-        <div class="doc-preview" onclick="window.open('Docs/Relatório Gestão Mkt Altaroda.pdf', '_blank')">
+        <div class="doc-preview">
           <iframe title="Relatório Gestão Marketing - ALTARODA" src="Docs/Relatório Gestão Mkt Altaroda.pdf"></iframe>
-          <div class="doc-overlay">
-            <div class="doc-actions">
-              <a href="Docs/Relatório Gestão Mkt Altaroda.pdf" target="_blank" class="doc-btn" onclick="event.stopPropagation()">👁️ Abrir</a>
-              <a href="Docs/Relatório Gestão Mkt Altaroda.pdf" download class="doc-btn" onclick="event.stopPropagation()">⬇️ Download</a>
-            </div>
+          <div class="doc-actions">
+            <a href="Docs/Relatório Gestão Mkt Altaroda.pdf" target="_blank" class="doc-btn">👁️ Abrir</a>
+            <a href="Docs/Relatório Gestão Mkt Altaroda.pdf" download class="doc-btn">⬇️ Download</a>
           </div>
         </div>
         <p class="legend"><time datetime="2019-09-01">Set 2019</time> · Relatório académico de gestão e marketing na ALTARODA.</p>
       </article>
       <article class="doc" data-date="2008-07-01">
         <h2>Dossier Técnico Individual (EPA)</h2>
-        <div class="doc-preview" onclick="window.open('Docs/Dossier Tecnico Individual - EPA.pdf', '_blank')">
+        <div class="doc-preview">
           <iframe title="Dossier Técnico Individual - EPA" src="Docs/Dossier Tecnico Individual - EPA.pdf"></iframe>
-          <div class="doc-overlay">
-            <div class="doc-actions">
-              <a href="Docs/Dossier Tecnico Individual - EPA.pdf" target="_blank" class="doc-btn" onclick="event.stopPropagation()">👁️ Abrir</a>
-              <a href="Docs/Dossier Tecnico Individual - EPA.pdf" download class="doc-btn" onclick="event.stopPropagation()">⬇️ Download</a>
-            </div>
+          <div class="doc-actions">
+            <a href="Docs/Dossier Tecnico Individual - EPA.pdf" target="_blank" class="doc-btn">👁️ Abrir</a>
+            <a href="Docs/Dossier Tecnico Individual - EPA.pdf" download class="doc-btn">⬇️ Download</a>
           </div>
         </div>
         <p class="legend"><time datetime="2008-07-01">Jul 2008</time> · Dossier técnico individual elaborado na EPA.</p>
