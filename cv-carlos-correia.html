@@ -505,53 +505,81 @@
             --sidebar-gradient-end: #0d1f2d;
         }        /* Smooth transitions for theme change */
         body, .container, .section, .sidebar, .main-content {
-            transition: background-color 0.3s ease, color 0.3s ease;        }        /* Dark Mode Toggle Button - Fixed at bottom right */
+            transition: background-color 0.3s ease, color 0.3s ease;        }        /* Dark Mode Toggle Button - Below Reports button with label */
+        .theme-toggle-wrapper {
+            position: absolute;
+            top: 56px;
+            right: 14px;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            transition: color 0.3s ease;
+        }
+
         .theme-toggle {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 100;
             background: linear-gradient(135deg, var(--accent2), var(--accent));
             border: none;
             border-radius: 50%;
-            width: 56px;
-            height: 56px;
+            width: 40px;
+            height: 40px;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(44, 95, 124, 0.35);
+            box-shadow: 0 4px 12px rgba(44, 95, 124, 0.3);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .theme-toggle:hover::before {
+            opacity: 1;
         }
 
         .theme-toggle:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(44, 95, 124, 0.45);
+            transform: translateY(-2px) scale(1.08);
+            box-shadow: 0 6px 20px rgba(44, 95, 124, 0.45);
         }
 
         .theme-toggle:active {
-            transform: translateY(-2px) scale(1.02);
+            transform: translateY(0) scale(1.02);
         }
 
         /* Dark mode styles */
         [data-theme="dark"] .theme-toggle {
-            background: linear-gradient(135deg, #4aa3d3, #64b5e0);
-            box-shadow: 0 6px 20px rgba(74, 163, 211, 0.35);
+            background: linear-gradient(135deg, #64b5e0, #4aa3d3);
+            box-shadow: 0 4px 12px rgba(74, 163, 211, 0.35);
         }
 
         [data-theme="dark"] .theme-toggle:hover {
-            box-shadow: 0 10px 30px rgba(74, 163, 211, 0.45);
+            box-shadow: 0 6px 20px rgba(74, 163, 211, 0.5);
         }
 
         .theme-icon {
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: inline-block;
         }
 
-        .theme-icon.hidden {
-            transform: rotate(180deg) scale(0);
-            opacity: 0;
-            position: absolute;
+        .theme-toggle:hover .theme-icon {
+            transform: rotate(20deg) scale(1.1);
         }
 
         /* Fade-in animations */
@@ -616,17 +644,19 @@
         }
 
         .contact-item:nth-child(1) { animation-delay: 0.3s; }
-        .contact-item:nth-child(2) { animation-delay: 0.4s; }
-        .contact-item:nth-child(3) { animation-delay: 0.5s; }        @media (max-width: 768px) {
-            .theme-toggle {
+        .contact-item:nth-child(2) { animation-delay: 0.4s; }        .contact-item:nth-child(3) { animation-delay: 0.5s; }        @media (max-width: 768px) {
+            .theme-toggle-wrapper {
                 top: 50px;
                 right: 8px;
-                padding: 5px;
+                gap: 6px;
             }
-            .theme-option {
-                width: 24px;
-                height: 24px;
-                font-size: 12px;
+            .theme-toggle-label {
+                font-size: 9px;
+            }
+            .theme-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
             }
         }
 
@@ -760,12 +790,14 @@
             if (typeof trackEvent !== 'undefined') {
                 trackEvent('theme_change', { theme: theme });
             }
-        }
-
-        function updateThemeIcon(theme) {
+        }        function updateThemeIcon(theme) {
             const icon = document.querySelector('.theme-icon');
+            const label = document.querySelector('.theme-toggle-label');
             if (icon) {
                 icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            }
+            if (label) {
+                label.textContent = theme === 'dark' ? 'Modo Claro' : 'Modo Escuro';
             }
         }
 
@@ -799,11 +831,7 @@
         });
     </script>
 </head>
-<body>    <!-- Dark Mode Toggle -->
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
-        <span class="theme-icon">🌙</span>
-    </button>
-
+<body>
     <div class="container">
         <div class="header">        <!-- Language Toggle -->
         <div class="lang-toggle">
@@ -813,7 +841,15 @@
                 <a href="projetos_programacao.html" class="top-nav-btn">📂 Projetos</a>
                 <a href="certificados_diplomas.html" class="top-nav-btn">🎓 Certificados</a>
                 <a href="projetos_relatorios_academicos.html" class="top-nav-btn">📄 Relatórios</a>
-            </div>            <!-- Sidebar -->
+            </div>
+            
+            <!-- Dark Mode Toggle -->
+            <div class="theme-toggle-wrapper">
+                <span class="theme-toggle-label">Modo Escuro</span>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar modo escuro" title="Alternar modo escuro">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div><!-- Sidebar -->
             <div class="sidebar">
                 <div class="sidebar-waves"></div>
                 <img src="BW.png?v=2" alt="Carlos Correia" class="profile-img" onerror="this.src='Imagens/img100.jpg'">
