@@ -3,7 +3,7 @@
 // - Google Analytics: https://analytics.google.com/
 // - Microsoft Clarity: https://clarity.microsoft.com/
 
-const GOOGLE_ANALYTICS_ID = 'G-XXXXXXXXXX'; // Replace with your GA4 ID
+const GOOGLE_ANALYTICS_ID = 'G-DZ5X9HH50G'; // Your Google Analytics 4 ID
 const MICROSOFT_CLARITY_ID = 'XXXXXXXXXX';   // Replace with your Clarity Project ID
 
 // Initialize Google Analytics 4
