@@ -428,9 +428,7 @@
             font-size: 14px;
             color: var(--text-tertiary);
             display: block;
-        }
-
-        @media print {
+        }        @media print {
             body {
                 background-color: white;
             }
@@ -443,6 +441,36 @@
             }
             .name-header::after {
                 background: #000;
+            }
+            
+            /* Disable ALL animations and transitions for print */
+            *, *::before, *::after {
+                animation: none !important;
+                animation-delay: 0s !important;
+                animation-duration: 0s !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            
+            /* Hide interactive elements */
+            .theme-toggle-wrapper,
+            .top-nav-buttons,
+            .lang-toggle {
+                display: none !important;
+            }
+            
+            /* Ensure all content is visible immediately */
+            .section, .job-entry, .sidebar-content, .contact-item {
+                opacity: 1 !important;
+                animation: none !important;
+            }
+            
+            /* Remove sidebar animations */
+            .sidebar::before,
+            .sidebar::after,
+            .sidebar-waves {
+                display: none !important;
             }
         }
 
