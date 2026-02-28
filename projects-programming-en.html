@@ -27,12 +27,9 @@
     nav a:hover { background:var(--accent2); color:#fff; }
 
     main { max-width:1200px; margin:-40px auto 60px; background:var(--main-bg); padding:40px 50px; border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.12); position:relative; transition:background .3s; }
-    @media (max-width:860px){ main { padding:32px 24px; margin:-60px 16px 50px; } h1{font-size:34px;} }
-
-    /* Dark mode toggle */
-    .theme-toggle { position:absolute; top:12px; right:200px; z-index:20; }
-    .theme-btn { font-size:13px; font-weight:600; padding:6px 12px; background:rgba(255,255,255,0.9); color:#2c5f7c; text-decoration:none; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.1); border:none; cursor:pointer; display:inline-flex; align-items:center; gap:5px; transition:all .3s; }
-    .theme-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,.2); }
+    @media (max-width:860px){ main { padding:32px 24px; margin:-60px 16px 50px; } h1{font-size:34px;} }    /* Dark mode toggle — integrado em .top-links */
+    .theme-btn { font-size:11px; font-weight:600; padding:6px 10px; background:rgba(255,255,255,0.85); color:var(--accent); border-radius:6px; border:1px solid #d0dee7; backdrop-filter:blur(4px); cursor:pointer; display:inline-flex; align-items:center; gap:4px; transition:.25s; line-height:1; font-family:inherit; }
+    .theme-btn:hover { background:var(--accent2); color:#fff; border-color:var(--accent2); }
 
     .grid { display:grid; gap:36px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:10px; }
     .card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px; display:flex; flex-direction:column; overflow:hidden; position:relative; box-shadow:0 4px 14px rgba(0,0,0,.06); transition:.35s; }
@@ -70,7 +67,7 @@
     footer a { color:var(--accent); text-decoration:none; }
     footer a:hover { text-decoration:underline; }
 
-    @media print { nav, .actions, .badge, .stack span, header::after, .theme-toggle { display:none !important; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} .card{page-break-inside:avoid;} }
+    @media print { nav, .actions, .badge, .stack span, header::after, .theme-btn { display:none !important; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} .card{page-break-inside:avoid;} }
 
     .top-links { position:absolute; top:12px; right:14px; display:flex; gap:8px; z-index:10; }
     .top-links a { font-size:11px; padding:6px 10px; background:rgba(255,255,255,0.85); color:var(--accent); border-radius:6px; text-decoration:none; border:1px solid #d0dee7; backdrop-filter:blur(4px); transition:.25s; }
@@ -81,28 +78,19 @@
     .lang-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.15); }
   </style>
 </head>
-<body>  <header role="banner" aria-label="Main header">
-    <div class="lang-toggle">
+<body>  <header role="banner" aria-label="Main header">    <div class="lang-toggle">
       <a href="projetos_programacao.html" class="lang-btn">PT</a>
-    </div>
-    <div class="theme-toggle">
-      <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">🌙 Dark</button>
     </div>
     <div class="top-links" aria-label="Portfolio navigation">
       <a href="cv-carlos-correia-en.html">← Back to CV</a>
       <a href="projects-programming-en.html" aria-current="page">Programming Projects</a>
       <a href="certificates-diplomas-en.html">Certificates & Diplomas</a>
       <a href="academic-reports-en.html">Academic Reports</a>
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">🌙 Dark</button>
     </div>
     
     <h1>Programming Projects</h1>
-    <p class="tagline">Selection of projects developed in different languages and contexts: enterprise applications, games, administrative systems and web platforms. Focus on clean architecture, documentation, accessibility and scalability. This page complements the main CV.</p>
-    <nav aria-label="Secondary navigation">
-      <a href="cv-carlos-correia-en.html">← Back to CV</a>
-      <a href="#projects">Projects</a>
-      <a href="#future">Future Roadmap</a>
-    </nav>
-  </header>
+    <p class="tagline">Selection of projects developed in different languages and contexts: enterprise applications, games, administrative systems and web platforms. Focus on clean architecture, documentation, accessibility and scalability. This page complements the main CV.</p>  </header>
   
   <main id="projects" role="main">    <div class="grid" aria-label="Project list">
       <!-- Family Budget Manager -->

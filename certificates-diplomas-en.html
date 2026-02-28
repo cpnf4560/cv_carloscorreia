@@ -21,10 +21,9 @@
     .top-links a:hover { background:#2ecc71; color:#fff; }
     .lang-toggle { position:absolute; top:12px; left:14px; z-index:10; }
     .lang-btn { font-size:11px; font-weight:600; padding:6px 12px; background:rgba(255,255,255,0.9); color:#1a7a4a; text-decoration:none; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:all 0.3s ease; display:inline-flex; align-items:center; gap:4px; }
-    .lang-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.15); }
-    .theme-toggle { position:absolute; top:12px; right:200px; z-index:20; }
-    .theme-btn { font-size:13px; font-weight:600; padding:6px 12px; background:rgba(255,255,255,0.9); color:#1a7a4a; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.1); border:none; cursor:pointer; display:inline-flex; align-items:center; gap:5px; transition:all .3s; }
-    .theme-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,.2); }
+    .lang-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.15); }    .theme-toggle { display:none; }
+    .theme-btn { font-size:11px; font-weight:600; padding:6px 10px; background:rgba(255,255,255,0.85); color:#1a7a4a; border-radius:6px; border:1px solid #c8dfd4; backdrop-filter:blur(4px); cursor:pointer; display:inline-flex; align-items:center; gap:4px; transition:.25s; line-height:1; font-family:inherit; }
+    .theme-btn:hover { background:#2ecc71; color:#fff; border-color:#2ecc71; }
     h1 { font-size:36px; }
     main { max-width:1200px; margin:-40px auto 60px; background:var(--main-bg); padding:32px 40px; border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.12); transition:background .3s; }
     .grid { display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
@@ -40,21 +39,18 @@
     footer { margin:40px 0 20px; text-align:center; font-size:12px; color:var(--footer-color); transition:color .3s; }
     footer a { color:var(--accent); text-decoration:none; }
     footer a:hover { text-decoration:underline; }
-    @media print { .top-links, .lang-toggle, .theme-toggle { display:none; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} }
+    @media print { .top-links, .lang-toggle, .theme-btn { display:none; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} }
   </style>
 </head>
-<body>  <header>
-    <div class="lang-toggle">
+<body>  <header>    <div class="lang-toggle">
       <a href="certificados_diplomas.html" class="lang-btn">PT</a>
-    </div>
-    <div class="theme-toggle">
-      <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">🌙 Dark</button>
     </div>
     <div class="top-links" aria-label="Portfolio navigation">
       <a href="cv-carlos-correia-en.html">← Back to CV</a>
       <a href="projects-programming-en.html">Programming Projects</a>
       <a href="certificates-diplomas-en.html" aria-current="page">Certificates & Diplomas</a>
       <a href="academic-reports-en.html">Academic Reports</a>
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">🌙 Dark</button>
     </div>
     <h1>Certificates and Diplomas</h1>
   </header>
