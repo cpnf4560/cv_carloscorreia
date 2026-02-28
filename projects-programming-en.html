@@ -13,14 +13,13 @@
   <link rel="icon" type="image/png" href="Imagens/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">  <style>
-    :root { --accent:#2c5f7c; --accent2:#4aa3d3; --bg:#eef3f8; --radius:16px; --main-bg:#fff; --card-bg:#fafcff; --card-border:#dde7ef; --text:#222; --text-muted:#555; --meta:#666; --btn-bg:#f0f4f8; --btn-border:#d5dfe8; --badge-bg:#fff; --footer-color:#666; --roadmap-color:#222; }
-    [data-theme="dark"] { --bg:#0f1923; --main-bg:#162130; --card-bg:#1e2f40; --card-border:#2a3f54; --text:#e8f0f7; --text-muted:#a8bfcf; --meta:#8ab0c8; --accent:#4aa3d3; --accent2:#6cbfe8; --btn-bg:#1e2f40; --btn-border:#2a3f54; --badge-bg:#1e2f40; --footer-color:#7a9bb5; --roadmap-color:#c8daea; }
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">  <style>    :root { --accent:#34495e; --accent2:#5d8aa8; --bg:#edf0f3; --radius:16px; --main-bg:#fff; --card-bg:#f5f7f9; --card-border:#c5ced8; --text:#222; --text-muted:#555; --meta:#666; --btn-bg:#edf0f3; --btn-border:#c5ced8; --badge-bg:#fff; --footer-color:#666; --roadmap-color:#222; }
+    [data-theme="dark"] { --bg:#0e1318; --main-bg:#151d26; --card-bg:#1c2737; --card-border:#253445; --text:#dde5ed; --text-muted:#8aa4bc; --meta:#8aa4bc; --accent:#5d8aa8; --accent2:#82b0cc; --btn-bg:#1c2737; --btn-border:#253445; --badge-bg:#1c2737; --footer-color:#6a90ac; --roadmap-color:#dde5ed; }
     * { box-sizing:border-box; margin:0; padding:0; }
     body { font-family:'Poppins','Segoe UI',Tahoma,sans-serif; background:var(--bg); color:var(--text); line-height:1.55; transition:background .3s,color .3s; }
-    header { background:linear-gradient(135deg,#2c5f7c 0%,#4aa3d3 100%); color:#fff; padding:40px 28px 56px; position:relative; overflow:hidden; }
+    header { background:linear-gradient(135deg,#34495e 0%,#5d8aa8 100%); color:#fff; padding:40px 28px 56px; position:relative; overflow:hidden; }
     header::after { content:""; position:absolute; inset:0; background:radial-gradient(circle at 80% 20%,rgba(255,255,255,0.25),transparent 60%); mix-blend-mode:overlay; }
-    h1 { font-size:42px; letter-spacing:.5px; margin-bottom:10px; }
+    h1 { font-size:36px; letter-spacing:.5px; margin-bottom:10px; }
     .tagline { font-size:15px; max-width:760px; text-align:justify; hyphens:auto; }
     nav { margin-top:22px; display:flex; gap:14px; flex-wrap:wrap; }
     nav a { background:#fff; color:var(--accent); padding:8px 16px; font-size:13px; font-weight:600; border-radius:50px; text-decoration:none; box-shadow:0 3px 10px rgba(0,0,0,.15); transition:.3s; }
@@ -34,7 +33,7 @@
     .grid { display:grid; gap:36px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:10px; }
     .card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px; display:flex; flex-direction:column; overflow:hidden; position:relative; box-shadow:0 4px 14px rgba(0,0,0,.06); transition:.35s; }
     .card:hover { transform:translateY(-6px); box-shadow:0 8px 26px rgba(0,0,0,.12); }
-    .card figure { margin:0; aspect-ratio:16/9; background:linear-gradient(135deg,#d3e5f1,#c0d7e6); display:flex; align-items:center; justify-content:center; font-size:38px; color:#2c5f7c; font-weight:600; letter-spacing:.5px; position:relative; overflow:hidden; }
+    .card figure { margin:0; aspect-ratio:16/9; background:linear-gradient(135deg,#d5dce3,#c5ced8); display:flex; align-items:center; justify-content:center; font-size:38px; color:#34495e; font-weight:600; letter-spacing:.5px; position:relative; overflow:hidden; }
     .card figure.letterbox { background:#000; }
     .card figure.letterbox img { object-fit:contain; background:#000; }
     .card img { width:100%; height:100%; object-fit:cover; display:block; }
@@ -88,9 +87,8 @@
       <a href="academic-reports-en.html">Academic Reports</a>
       <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">🌙 Dark</button>
     </div>
-    
-    <h1>Programming Projects</h1>
-    <p class="tagline">Selection of projects developed in different languages and contexts: enterprise applications, games, administrative systems and web platforms. Focus on clean architecture, documentation, accessibility and scalability. This page complements the main CV.</p>  </header>
+      <h1>Programming Projects</h1>
+  </header>
   
   <main id="projects" role="main">    <div class="grid" aria-label="Project list">
       <!-- Family Budget Manager -->
@@ -248,20 +246,7 @@
           <a class="btn" href="https://quest4couple.onrender.com" target="_blank" rel="noopener">🚀 Demo</a>
         </div>
       </article>
-      -->
-    </div>
-
-    <section id="future" aria-labelledby="future-title">
-      <h2 class="section-title" id="future-title">🚀 Future Roadmap</h2>
-      <ul style="list-style:disc; padding-left:22px; font-size:14px; line-height:1.5;">
-        <li>Add complete SQL commands page with filters and search.</li>
-        <li>Publish individual PDF reports per project (architecture, metrics, lessons learned).</li>
-        <li>Expand Space Defender to modular particle and level system.</li>
-        <li>Integrate Stripe + Firebase (Quest4Couple) and real-time dashboards.</li>
-        <li>Add automated tests and code coverage (Futsal / Pizza).</li>
-        <li>Optimize accessibility (WAI-ARIA) and generate summary version for printing.</li>
-      </ul>
-    </section>
+      -->    </div>
   </main>
   <footer role="contentinfo">
     <p>© 2025 Carlos Correia. All rights reserved. • <a href="cv-carlos-correia-en.html">CV</a></p>
