@@ -10,21 +10,25 @@
   
   <meta name="description" content="Certificates, diplomas and academic documents of Carlos Correia." />
   <link rel="icon" type="image/png" href="Imagens/favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root { --accent:#2c5f7c; --accent2:#4aa3d3; --bg:#eef3f8; --radius:16px; }
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">  <style>
+    :root { --accent:#1a7a4a; --accent2:#2ecc71; --bg:#eef5f1; --radius:16px; --main-bg:#fff; --doc-bg:#f8fbf9; --doc-border:#c8dfd4; --text:#222; --legend-color:#555; --footer-color:#666; }
+    [data-theme="dark"] { --bg:#0d1f16; --main-bg:#122019; --doc-bg:#182d20; --doc-border:#1f4030; --text:#e0f0e8; --legend-color:#93c9aa; --footer-color:#6aab86; --accent:#2ecc71; --accent2:#5de89a; }
     * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Poppins','Segoe UI',Tahoma,sans-serif; background:var(--bg); color:#222; line-height:1.55; }
-    header { background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%); color:#fff; padding:40px 28px 56px; position:relative; }
+    body { font-family:'Poppins','Segoe UI',Tahoma,sans-serif; background:var(--bg); color:var(--text); line-height:1.55; transition:background .3s,color .3s; }
+    header { background:linear-gradient(135deg,#1a7a4a 0%,#2ecc71 100%); color:#fff; padding:40px 28px 56px; position:relative; }
     .top-links { position:absolute; top:12px; right:14px; display:flex; gap:8px; z-index:10; }
-    .top-links a { font-size:11px; padding:6px 10px; background:rgba(255,255,255,0.85); color:var(--accent); border-radius:6px; text-decoration:none; border:1px solid #d0dee7; backdrop-filter:blur(4px); transition:.25s; }
-    .top-links a:hover { background:var(--accent2); color:#fff; }
+    .top-links a { font-size:11px; padding:6px 10px; background:rgba(255,255,255,0.85); color:#1a7a4a; border-radius:6px; text-decoration:none; border:1px solid #c8dfd4; backdrop-filter:blur(4px); transition:.25s; }
+    .top-links a:hover { background:#2ecc71; color:#fff; }
     .lang-toggle { position:absolute; top:12px; left:14px; z-index:10; }
-    .lang-btn { font-size:11px; font-weight:600; padding:6px 12px; background:rgba(255,255,255,0.9); color:var(--accent); text-decoration:none; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:all 0.3s ease; display:inline-flex; align-items:center; gap:4px; }
+    .lang-btn { font-size:11px; font-weight:600; padding:6px 12px; background:rgba(255,255,255,0.9); color:#1a7a4a; text-decoration:none; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:all 0.3s ease; display:inline-flex; align-items:center; gap:4px; }
     .lang-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.15); }
-    h1 { font-size:36px; }    main { max-width:1200px; margin:-40px auto 60px; background:#fff; padding:32px 40px; border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.12); }
+    .theme-toggle { position:absolute; top:12px; right:200px; z-index:20; }
+    .theme-btn { font-size:13px; font-weight:600; padding:6px 12px; background:rgba(255,255,255,0.9); color:#1a7a4a; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.1); border:none; cursor:pointer; display:inline-flex; align-items:center; gap:5px; transition:all .3s; }
+    .theme-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,.2); }
+    h1 { font-size:36px; }
+    main { max-width:1200px; margin:-40px auto 60px; background:var(--main-bg); padding:32px 40px; border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.12); transition:background .3s; }
     .grid { display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
-    .doc { border:1px solid #d2dde6; border-radius:12px; padding:14px; background:#f8fbfe; box-shadow:0 4px 12px rgba(0,0,0,.06); position:relative; }
+    .doc { border:1px solid var(--doc-border); border-radius:12px; padding:14px; background:var(--doc-bg); box-shadow:0 4px 12px rgba(0,0,0,.06); position:relative; transition:background .3s,border-color .3s; }
     .doc h2 { font-size:16px; color:var(--accent); margin-bottom:8px; }
     .doc-preview { width:100%; aspect-ratio:4/3; border:0; background:#fff; border-radius:8px; overflow:hidden; position:relative; }
     .doc-preview iframe { width:100%; height:100%; border:0; pointer-events:auto; }
@@ -32,20 +36,20 @@
     .doc-preview:hover .doc-actions { opacity:1; transform:translateY(0); }
     .doc-btn { padding:6px 12px; background:rgba(255,255,255,0.95); color:var(--accent); border-radius:6px; text-decoration:none; font-size:11px; font-weight:600; display:flex; align-items:center; gap:5px; transition:all 0.2s ease; box-shadow:0 2px 8px rgba(0,0,0,0.15); backdrop-filter:blur(4px); }
     .doc-btn:hover { background:var(--accent2); color:#fff; transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.25); }
-    .legend { font-size:12px; color:#555; margin-top:8px; text-align:justify; hyphens:auto; }
-
-    footer { margin:40px 0 20px; text-align:center; font-size:12px; color:#666; }
+    .legend { font-size:12px; color:var(--legend-color); margin-top:8px; text-align:justify; hyphens:auto; transition:color .3s; }
+    footer { margin:40px 0 20px; text-align:center; font-size:12px; color:var(--footer-color); transition:color .3s; }
     footer a { color:var(--accent); text-decoration:none; }
     footer a:hover { text-decoration:underline; }
-
-    @media print { .top-links, .lang-toggle { display:none; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} }
+    @media print { .top-links, .lang-toggle, .theme-toggle { display:none; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} }
   </style>
 </head>
-<body>
-  <header>    <div class="lang-toggle">
+<body>  <header>
+    <div class="lang-toggle">
       <a href="certificados_diplomas.html" class="lang-btn">PT</a>
     </div>
-    
+    <div class="theme-toggle">
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">🌙 Dark</button>
+    </div>
     <div class="top-links" aria-label="Portfolio navigation">
       <a href="cv-carlos-correia-en.html">← Back to CV</a>
       <a href="projects-programming-en.html">Programming Projects</a>
@@ -113,18 +117,26 @@
       </article>
     </div>
   </main>
-
   <footer>
     <p>© 2025 Carlos Correia • <a href="cv-carlos-correia-en.html">CV</a></p>
   </footer>
   <script>
-    // Sort articles by data-date (desc)
     (function(){
-      const grid = document.getElementById('docs-grid');
+      var grid = document.getElementById('docs-grid');
       if(!grid) return;
-      const items = Array.from(grid.children);
-      items.sort((a,b)=> (b.dataset.date||'').localeCompare(a.dataset.date||''));
-      items.forEach(el=>grid.appendChild(el));
+      var items = Array.from(grid.children);
+      items.sort(function(a,b){ return (b.dataset.date||'').localeCompare(a.dataset.date||''); });
+      items.forEach(function(el){ grid.appendChild(el); });
+    })();
+    (function(){
+      var btn = document.getElementById('themeToggle');
+      var saved = localStorage.getItem('theme');
+      if(saved === 'dark') { document.documentElement.setAttribute('data-theme','dark'); btn.textContent='☀️ Light'; }
+      btn.addEventListener('click', function(){
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if(isDark){ document.documentElement.removeAttribute('data-theme'); localStorage.setItem('theme','light'); btn.textContent='🌙 Dark'; }
+        else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('theme','dark'); btn.textContent='☀️ Light'; }
+      });
     })();
   </script>
 </body>

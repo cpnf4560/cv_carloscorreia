@@ -13,12 +13,12 @@
   <link rel="icon" type="image/png" href="Imagens/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root { --accent:#2c5f7c; --accent2:#4aa3d3; --bg:#eef3f8; --radius:16px; }
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">  <style>
+    :root { --accent:#2c5f7c; --accent2:#4aa3d3; --bg:#eef3f8; --radius:16px; --main-bg:#fff; --card-bg:#fafcff; --card-border:#dde7ef; --text:#222; --text-muted:#555; --meta:#666; --btn-bg:#f0f4f8; --btn-border:#d5dfe8; --badge-bg:#fff; --footer-color:#666; --roadmap-color:#222; }
+    [data-theme="dark"] { --bg:#0f1923; --main-bg:#162130; --card-bg:#1e2f40; --card-border:#2a3f54; --text:#e8f0f7; --text-muted:#a8bfcf; --meta:#8ab0c8; --accent:#4aa3d3; --accent2:#6cbfe8; --btn-bg:#1e2f40; --btn-border:#2a3f54; --badge-bg:#1e2f40; --footer-color:#7a9bb5; --roadmap-color:#c8daea; }
     * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Poppins','Segoe UI',Tahoma,sans-serif; background:var(--bg); color:#222; line-height:1.55; }
-    header { background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%); color:#fff; padding:40px 28px 56px; position:relative; overflow:hidden; }
+    body { font-family:'Poppins','Segoe UI',Tahoma,sans-serif; background:var(--bg); color:var(--text); line-height:1.55; transition:background .3s,color .3s; }
+    header { background:linear-gradient(135deg,#2c5f7c 0%,#4aa3d3 100%); color:#fff; padding:40px 28px 56px; position:relative; overflow:hidden; }
     header::after { content:""; position:absolute; inset:0; background:radial-gradient(circle at 80% 20%,rgba(255,255,255,0.25),transparent 60%); mix-blend-mode:overlay; }
     h1 { font-size:42px; letter-spacing:.5px; margin-bottom:10px; }
     .tagline { font-size:15px; max-width:760px; text-align:justify; hyphens:auto; }
@@ -26,80 +26,68 @@
     nav a { background:#fff; color:var(--accent); padding:8px 16px; font-size:13px; font-weight:600; border-radius:50px; text-decoration:none; box-shadow:0 3px 10px rgba(0,0,0,.15); transition:.3s; }
     nav a:hover { background:var(--accent2); color:#fff; }
 
-    main { max-width:1200px; margin:-40px auto 60px; background:#fff; padding:40px 50px; border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.12); position:relative; }
+    main { max-width:1200px; margin:-40px auto 60px; background:var(--main-bg); padding:40px 50px; border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.12); position:relative; transition:background .3s; }
     @media (max-width:860px){ main { padding:32px 24px; margin:-60px 16px 50px; } h1{font-size:34px;} }
 
+    /* Dark mode toggle */
+    .theme-toggle { position:absolute; top:12px; right:200px; z-index:20; }
+    .theme-btn { font-size:13px; font-weight:600; padding:6px 12px; background:rgba(255,255,255,0.9); color:#2c5f7c; text-decoration:none; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.1); border:none; cursor:pointer; display:inline-flex; align-items:center; gap:5px; transition:all .3s; }
+    .theme-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,.2); }
+
     .grid { display:grid; gap:36px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin-top:10px; }
-    .card { background:#fafcff; border:1px solid #dde7ef; border-radius:14px; display:flex; flex-direction:column; overflow:hidden; position:relative; box-shadow:0 4px 14px rgba(0,0,0,.06); transition:.35s; }
+    .card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px; display:flex; flex-direction:column; overflow:hidden; position:relative; box-shadow:0 4px 14px rgba(0,0,0,.06); transition:.35s; }
     .card:hover { transform:translateY(-6px); box-shadow:0 8px 26px rgba(0,0,0,.12); }
     .card figure { margin:0; aspect-ratio:16/9; background:linear-gradient(135deg,#d3e5f1,#c0d7e6); display:flex; align-items:center; justify-content:center; font-size:38px; color:#2c5f7c; font-weight:600; letter-spacing:.5px; position:relative; overflow:hidden; }
     .card figure.letterbox { background:#000; }
     .card figure.letterbox img { object-fit:contain; background:#000; }
     .card img { width:100%; height:100%; object-fit:cover; display:block; }
-    
+
     .game-preview { position:relative; cursor:pointer; }
     .game-preview img { width:100%; height:100%; object-fit:contain; display:block; transition:opacity 0.3s ease; }
-    .game-preview .animated-preview { 
-      position:absolute; 
-      inset:0; 
-      opacity:0; 
-      z-index:1;
-      pointer-events:none;
-    }
+    .game-preview .animated-preview { position:absolute; inset:0; opacity:0; z-index:1; pointer-events:none; }
     .game-preview:hover .animated-preview { opacity:1; pointer-events:auto; }
-    .game-preview .play-overlay { 
-      position:absolute; 
-      inset:0; 
-      display:flex; 
-      align-items:center; 
-      justify-content:center; 
-      background:rgba(0,0,0,0.4); 
-      color:#fff; 
-      font-size:52px; 
-      opacity:0.8; 
-      transition:all 0.3s ease;
-      pointer-events:none;
-      z-index:2;
-      text-shadow:0 2px 8px rgba(0,0,0,0.6);
-    }
+    .game-preview .play-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.4); color:#fff; font-size:52px; opacity:0.8; transition:all 0.3s ease; pointer-events:none; z-index:2; text-shadow:0 2px 8px rgba(0,0,0,0.6); }
     .game-preview:hover .play-overlay { opacity:0; transform:scale(1.2); }
-    
+
     .card figure .quick-links { position:absolute; top:8px; right:8px; display:flex; gap:4px; z-index:5; }
     .card figure .quick-links a { background:rgba(255,255,255,0.9); color:var(--accent); padding:4px 7px; font-size:10.5px; border-radius:5px; text-decoration:none; font-weight:600; border:1px solid rgba(0,0,0,.25); box-shadow:0 2px 5px rgba(0,0,0,.28); line-height:1; }
     .card figure .quick-links a:hover { background:linear-gradient(135deg,var(--accent2),var(--accent)); color:#fff; border-color:var(--accent2); }
-    
+
     .card h2 { font-size:16px; padding:16px 20px 4px; color:var(--accent); line-height:1.3; }
-    .meta { font-size:11px; font-weight:600; color:#666; padding:0 20px 8px; text-transform:uppercase; letter-spacing:.5px; }
-    .desc { font-size:13px; padding:0 20px 16px; flex:1; text-align:justify; hyphens:auto; color:#555; line-height:1.5; }
+    .meta { font-size:11px; font-weight:600; color:var(--meta); padding:0 20px 8px; text-transform:uppercase; letter-spacing:.5px; }
+    .desc { font-size:13px; padding:0 20px 16px; flex:1; text-align:justify; hyphens:auto; color:var(--text-muted); line-height:1.5; }
     .stack { padding:0 20px 12px; display:flex; flex-wrap:wrap; gap:5px; }
     .stack span { background:linear-gradient(90deg,var(--accent2),var(--accent)); color:#fff; font-size:10px; padding:4px 9px; border-radius:40px; letter-spacing:.5px; }
     .actions { display:flex; gap:8px; padding:0 20px 18px; flex-wrap:wrap; }
-    .btn { text-decoration:none; font-size:11px; font-weight:600; padding:6px 12px; border-radius:6px; background:#f0f4f8; color:var(--accent); border:1px solid #d5dfe8; box-shadow:0 2px 6px rgba(0,0,0,.08); transition:.3s; display:inline-flex; align-items:center; gap:5px; }
+    .btn { text-decoration:none; font-size:11px; font-weight:600; padding:6px 12px; border-radius:6px; background:var(--btn-bg); color:var(--accent); border:1px solid var(--btn-border); box-shadow:0 2px 6px rgba(0,0,0,.08); transition:.3s; display:inline-flex; align-items:center; gap:5px; }
     .btn:hover { background:var(--accent); color:#fff; border-color:var(--accent); box-shadow:0 3px 10px rgba(44,95,124,.2); }
-    .badge { position:absolute; top:10px; left:10px; background:#fff; color:var(--accent); font-size:11px; padding:4px 8px; border-radius:6px; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,.15); }
+    .badge { position:absolute; top:10px; left:10px; background:var(--badge-bg); color:var(--accent); font-size:11px; padding:4px 8px; border-radius:6px; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,.15); }
 
     .section-title { font-size:22px; font-weight:700; margin:50px 0 18px; background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    #futuro ul { color:var(--roadmap-color); }
 
-    footer { margin:40px 0 20px; text-align:center; font-size:12px; color:#666; }
+    footer { margin:40px 0 20px; text-align:center; font-size:12px; color:var(--footer-color); transition:color .3s; }
     footer a { color:var(--accent); text-decoration:none; }
     footer a:hover { text-decoration:underline; }
 
-    @media print { nav, .actions, .badge, .stack span, header::after { display:none !important; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} .card{page-break-inside:avoid;} }
-    
+    @media print { nav, .actions, .badge, .stack span, header::after, .theme-toggle { display:none !important; } body{background:#fff;} main{box-shadow:none; margin:0; padding:0;} .card{page-break-inside:avoid;} }
+
     .top-links { position:absolute; top:12px; right:14px; display:flex; gap:8px; z-index:10; }
     .top-links a { font-size:11px; padding:6px 10px; background:rgba(255,255,255,0.85); color:var(--accent); border-radius:6px; text-decoration:none; border:1px solid #d0dee7; backdrop-filter:blur(4px); transition:.25s; }
     .top-links a:hover { background:var(--accent2); color:#fff; }
-    
+
     .lang-toggle { position:absolute; top:12px; left:14px; z-index:10; }
     .lang-btn { font-size:11px; font-weight:600; padding:6px 12px; background:rgba(255,255,255,0.9); color:var(--accent); text-decoration:none; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition:all 0.3s ease; display:inline-flex; align-items:center; gap:4px; }
     .lang-btn:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.15); }
   </style>
 </head>
-<body>
-  <header role="banner" aria-label="Main header">    <div class="lang-toggle">
+<body>  <header role="banner" aria-label="Main header">
+    <div class="lang-toggle">
       <a href="projetos_programacao.html" class="lang-btn">PT</a>
     </div>
-    
+    <div class="theme-toggle">
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">🌙 Dark</button>
+    </div>
     <div class="top-links" aria-label="Portfolio navigation">
       <a href="cv-carlos-correia-en.html">← Back to CV</a>
       <a href="projects-programming-en.html" aria-current="page">Programming Projects</a>
@@ -287,9 +275,20 @@
       </ul>
     </section>
   </main>
-
   <footer role="contentinfo">
     <p>© 2025 Carlos Correia. All rights reserved. • <a href="cv-carlos-correia-en.html">CV</a></p>
   </footer>
+  <script>
+    (function(){
+      const btn = document.getElementById('themeToggle');
+      const saved = localStorage.getItem('theme');
+      if(saved === 'dark') { document.documentElement.setAttribute('data-theme','dark'); btn.textContent='☀️ Light'; }
+      btn.addEventListener('click', function(){
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if(isDark){ document.documentElement.removeAttribute('data-theme'); localStorage.setItem('theme','light'); btn.textContent='🌙 Dark'; }
+        else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('theme','dark'); btn.textContent='☀️ Light'; }
+      });
+    })();
+  </script>
 </body>
 </html>
