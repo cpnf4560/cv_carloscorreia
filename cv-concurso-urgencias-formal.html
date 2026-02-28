@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Correia - Curriculum Vitae</title>    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2c5282;
+            --secondary: #4a6fa5;
+            --accent: #5a7a9b;
+            --text-dark: #1a202c;
+            --text-medium: #4a5568;
+            --text-light: #718096;
+            --border: #cbd5e0;
+            --bg-light: #f7fafc;
+        }        @page {
+            size: A4;
+            margin: 8mm 8mm;
+        }          body {
+            font-family: 'Roboto', 'Arial', sans-serif;
+            font-size: 8.5pt;
+            line-height: 1.25;
+            color: var(--text-dark);
+            background: #fff;
+        }
+        
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: #fff;
+        }        /* Header */
+        .header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3mm;
+            border-bottom: 2pt solid var(--primary);
+            padding-bottom: 3mm;
+            margin-bottom: 3mm;
+            align-items: center;
+        }          .header-info h1 {
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1mm;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }          .header-info .subtitle {
+            font-size: 10pt;
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 2mm;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5mm;
+            font-size: 8.5pt;
+            color: var(--text-medium);
+        }
+        
+        .contact-info div {
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info strong {
+            margin-right: 2mm;
+            min-width: 22mm;
+            color: var(--text-dark);
+        }
+          .header-photo {
+            width: 26mm;
+            height: 26mm;
+            border-radius: 50%;
+            border: 2pt solid var(--primary);
+            object-fit: cover;
+            object-position: center 65%;
+        }        /* Sections */
+        .section {
+            margin-bottom: 3mm;
+        }          .section-title {
+            font-size: 10pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            border-bottom: 2pt solid var(--secondary);
+            padding-bottom: 0.5mm;
+            margin-bottom: 2mm;
+            letter-spacing: 0.5px;
+        }
+          /* Profile */        .profile-text {
+            text-align: justify;
+            font-size: 8.5pt;
+            line-height: 1.45;
+            margin-bottom: 1.5mm;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            padding: 2mm;
+            border-left: 3pt solid var(--accent);
+        }
+        
+        /* Competências chave */
+        .competencias-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);            gap: 0.5mm 4mm;
+            font-size: 8.5pt;
+            margin-bottom: 2mm;
+            background: var(--bg-light);
+            padding: 2.5mm;
+            border-radius: 2mm;
+        }
+        
+        .competencias-list li {
+            list-style: none;
+            padding-left: 4mm;
+            position: relative;
+            color: var(--text-dark);
+        }
+        
+        .competencias-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: var(--accent);
+        }        /* Experience */
+        .experience-entry {
+            margin-bottom: 2.5mm;
+            padding-bottom: 1.5mm;
+            border-bottom: 0.5pt solid var(--border);
+            page-break-inside: avoid;
+        }
+        
+        .experience-entry:last-child {
+            border-bottom: none;
+        }
+          .experience-header {
+            margin-bottom: 1mm;
+        }
+          .experience-header h3 {
+            font-size: 9pt;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5mm;
+        }        .experience-header .period {
+            font-size: 7.5pt;
+            color: var(--text-light);
+            font-style: italic;
+        }
+          .experience-company {
+            font-size: 8.5pt;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.5mm;
+        }
+          .experience-sector {
+            font-size: 8pt;
+            color: var(--text-medium);
+            margin-bottom: 1mm;
+        }
+          .experience-activities {
+            font-size: 8pt;
+            color: var(--text-dark);
+        }
+          .experience-activities ul {
+            margin-left: 3.5mm;
+            list-style-type: disc;
+        }
+        
+        .experience-activities li {
+            margin-bottom: 0.3mm;
+        }
+        
+        .experience-activities li strong {
+            color: var(--primary);
+        }        .experience-highlight {
+            font-size: 7.5pt;
+            color: var(--secondary);
+            margin-top: 1mm;
+            font-style: italic;
+            font-weight: 500;
+        }/* Education */
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5mm;
+        }
+        
+        .education-item {
+            border: 1pt solid var(--border);
+            padding: 2.5mm;
+            background: var(--bg-light);
+            border-top: 3pt solid var(--secondary);
+        }
+          .education-item h4 {
+            font-size: 9pt;
+            font-weight: 700;
+            margin-bottom: 1.5mm;
+            color: var(--primary);
+        }
+          .education-item .institution {
+            font-size: 8.5pt;
+            font-weight: 500;
+            margin-bottom: 0.5mm;
+            color: var(--text-dark);
+        }
+          .education-item .details {
+            font-size: 8pt;
+            color: var(--text-light);
+        }
+        
+        /* Training */
+        .training-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;            gap: 1.5mm 4mm;
+            font-size: 8.5pt;
+        }
+        
+        .training-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5mm 0;
+            border-bottom: 0.5pt dotted var(--border);
+        }
+        
+        .training-item .name {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .training-item .hours {
+            color: var(--text-light);
+            white-space: nowrap;
+        }        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5mm;
+        }
+        
+        .skills-box {
+            border: 1pt solid var(--border);
+            padding: 2.5mm;
+            background: var(--bg-light);
+            border-top: 3pt solid var(--secondary);
+        }
+          .skills-box h4 {
+            font-size: 9pt;
+            font-weight: 700;
+            margin-bottom: 1.5mm;
+            border-bottom: 1pt solid var(--primary);
+            padding-bottom: 0.5mm;
+            color: var(--primary);
+        }
+          .skills-list {
+            font-size: 8.5pt;
+            list-style-type: disc;
+            margin-left: 4mm;
+            color: var(--text-dark);
+        }
+        
+        .skills-list li {
+            margin-bottom: 0.5mm;
+        }
+        
+        /* Languages */
+        .languages-section {
+            margin-top: 1.5mm;
+        }
+          .language-item {
+            margin-bottom: 1.5mm;
+            font-size: 8.5pt;
+            color: var(--text-dark);
+        }
+        
+        .language-item strong {
+            font-weight: 700;
+            color: var(--primary);
+        }
+          .language-note {
+            font-size: 8pt;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 1.5mm;
+        }
+        
+        /* References */
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5mm;
+        }
+        
+        .reference-item {
+            border: 1pt solid var(--border);            padding: 2mm;
+            font-size: 8pt;
+            background: var(--bg-light);
+            border-top: 3pt solid var(--accent);
+        }
+          .reference-item strong {
+            display: block;
+            font-size: 8.5pt;
+            margin-bottom: 0.5mm;
+            color: var(--primary);
+        }
+        
+        .reference-item .role {
+            color: var(--text-medium);
+            margin-bottom: 0.5mm;
+        }
+        
+        /* Declaration */
+        .declaration {
+            margin-top: 4mm;
+            padding: 2.5mm;
+            border: 1.5pt solid var(--primary);
+            background: var(--bg-light);
+            text-align: center;            font-size: 8.5pt;
+            font-style: italic;
+            color: var(--text-dark);
+        }/* Print specific */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .experience-entry,
+            .education-item,
+            .reference-item {
+                page-break-inside: avoid;
+            }
+            
+            .profile-text,
+            .competencias-list,
+            .education-item,
+            .skills-box,
+            .reference-item,
+            .declaration {
+                background: #f7fafc !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-info">
+                <h1>Carlos Correia</h1>
+                <p class="subtitle">Candidatura: Assistente Técnico — Serviço de Urgência</p>
+                <div class="contact-info">
+                    <div><strong>Residência:</strong> Penafiel, Porto</div>
+                    <div><strong>Telefone:</strong> +351 918 631 101</div>
+                    <div><strong>Data Nascimento:</strong> 23/08/1989 (36 anos)</div>
+                    <div><strong>E-mail:</strong> carlos.sousacorreia@gmail.com</div>
+                </div>
+            </div>
+            <img src="BW.png" alt="Carlos Correia" class="header-photo" onerror="this.style.display='none'">
+        </header>
+        
+        <!-- Perfil Profissional -->
+        <section class="section">
+            <h2 class="section-title">Perfil Profissional</h2>
+            <p class="profile-text">
+                Profissional com <strong>mais de 12 anos de experiência em funções administrativas e atendimento ao público</strong>, incluindo <strong>mais de 3 anos em hotelaria</strong> (2 anos e 8 meses em Londres + 5 meses em Portugal), com progressão até funções de supervisão e gestão de equipas. Experiência complementar em <strong>call center, faturação, gestão documental</strong>, controlo de processos e contacto direto com clientes. Comunicação eficaz em <strong>inglês (nível B2)</strong> e domínio de ferramentas informáticas (Microsoft Office, ERPs, sistemas de gestão). Perfil orientado para o serviço, com capacidade de trabalho em equipa e sob pressão.
+            </p>
+        </section>
+        
+        <!-- Competências Chave -->
+        <section class="section">
+            <h2 class="section-title">Competências Alinhadas com o Perfil de Assistente Técnico</h2>
+            <ul class="competencias-list">
+                <li>Atendimento ao público (presencial e telefónico)</li>
+                <li>Gestão de reclamações e resolução de problemas</li>
+                <li>Domínio do Microsoft Office (Word, Excel, Outlook)</li>
+                <li>Inglês B2 — escrito e oral</li>
+                <li>Gestão documental e administrativa</li>
+                <li>Experiência em trabalho por turnos (incluindo noturno)</li>
+                <li>Experiência em call center / apoio técnico</li>
+                <li>Trabalho em equipa multidisciplinar</li>
+            </ul>
+        </section>
+        
+        <!-- Experiência Profissional -->
+        <section class="section">
+            <h2 class="section-title">Experiência Profissional Relevante</h2>
+            
+            <!-- Shaftesbury Hotels -->
+            <div class="experience-entry">
+                <div class="experience-header">
+                    <h3>Rececionista | Supervisor de Turno (Shift Leader) | Night Auditor | Senior Night Auditor</h3>
+                    <span class="period">01/2012 - 10/2012 | 05/2013 - 12/2013 | 03/2016 - 03/2017</span>
+                </div>
+                <p class="experience-company">SHAFTESBURY HOTELS LONDON LIMITED (Reino Unido) | Park Grand Hotels | The Montcalm Collection</p>
+                <p class="experience-sector">Cadeia hoteleira com 24 propriedades de 4 e 5 estrelas — Atendimento ao público 24h</p>
+                <ul class="experience-activities">
+                    <li><strong>Atendimento ao público:</strong> Receção e acompanhamento de hóspedes, check-in/check-out, gestão de reservas e informações.</li>
+                    <li><strong>Gestão de reclamações:</strong> Resolução de problemas e queixas de clientes, com foco na satisfação e qualidade de serviço.</li>
+                    <li><strong>Gestão de tesouraria:</strong> Auditoria noturna, fecho de caixa, controlo de movimentos financeiros.</li>
+                    <li><strong>Supervisão de equipas:</strong> Coordenação de equipas de receção em múltiplas unidades (5 hotéis).</li>
+                    <li><strong>Formação:</strong> Formação a novos colaboradores, managers e auditores em procedimentos administrativos.</li>
+                    <li><strong>Trabalho por turnos:</strong> Experiência em turnos rotativos, incluindo regime noturno.</li>
+                </ul>
+                <p class="experience-highlight">Prémios de Performance Individual no Hotel Grand Royale London Hyde Park (Set a Dez 2016) | Melhor Performance da Cadeia em EB upselling (Out/2016)</p>
+            </div>
+            
+            <!-- Penafiel Park Hotel -->
+            <div class="experience-entry">
+                <div class="experience-header">
+                    <h3>Rececionista de 2.ª | Night Auditor</h3>
+                    <span class="period">10/2012 — 05/2013</span>
+                </div>
+                <p class="experience-company">PENAFIEL PARK HOTEL & SPA | TURISOUSA, LDA.</p>
+                <p class="experience-sector">Hotelaria — Unidade de 4 estrelas</p>
+                <ul class="experience-activities">
+                    <li><strong>Atendimento ao público:</strong> Receção de hóspedes, check-in/check-out, informações turísticas.</li>
+                    <li><strong>Night Auditor:</strong> Auditoria noturna, fecho de caixa e controlo de movimentos.</li>
+                    <li><strong>Trabalho por turnos:</strong> Turnos rotativos incluindo regime noturno.</li>
+                </ul>
+            </div>
+            
+            <!-- Novabase -->
+            <div class="experience-entry">
+                <div class="experience-header">
+                    <h3>Técnico de Apoio ao Cliente — Call Center</h3>
+                    <span class="period">2009 — 2010</span>
+                </div>
+                <p class="experience-company">NOVABASE DIGITAL TV, S.A.</p>
+                <p class="experience-sector">Técnico de apoio TV, NET e VOZ (para clientes Zon TV Cabo)</p>
+                <ul class="experience-activities">
+                    <li><strong>Atendimento telefónico:</strong> Apoio técnico e despiste de avarias a clientes de serviços de telecomunicações.</li>
+                    <li><strong>Resolução de problemas:</strong> Diagnóstico e resolução de questões técnicas e administrativas.</li>
+                    <li><strong>Gestão de reclamações:</strong> Tratamento de reclamações e encaminhamento de processos.</li>
+                </ul>
+            </div>
+            
+            <!-- Medinova -->
+            <div class="experience-entry">
+                <div class="experience-header">
+                    <h3>Administrativo / Técnico Superior de Gestão</h3>
+                    <span class="period">12/2023 — 11/2024</span>
+                </div>
+                <p class="experience-company">MEDINOVA, LDA.</p>
+                <p class="experience-sector">Serviços de Medicina e Segurança no Trabalho</p>
+                <ul class="experience-activities">
+                    <li><strong>Gestão administrativa:</strong> Elaboração de propostas, contratos e documentação de serviços.</li>
+                    <li><strong>Concursos públicos:</strong> Preparação e coordenação de candidaturas a concursos públicos.</li>
+                    <li><strong>Atendimento:</strong> Contacto com clientes e entidades para esclarecimentos e acompanhamento de propostas comerciais e contratuais.</li>
+                </ul>
+            </div>
+            
+            <!-- Magasteel -->
+            <div class="experience-entry">
+                <div class="experience-header">
+                    <h3>Administrativo / Técnico Superior de Gestão e Negócio de PME</h3>
+                    <span class="period">10/2021 — 11/2023</span>
+                </div>
+                <p class="experience-company">MAGASTEEL, SOLUÇÕES EM TUBOS DE AÇO, LDA.</p>
+                <p class="experience-sector">Comércio de tubos de aço carbono</p>
+                <ul class="experience-activities">
+                    <li><strong>Gestão Financeira:</strong> Gestão de créditos, factoring, confirming, leasing, contas caucionadas.</li>
+                    <li><strong>Contabilidade:</strong> Faturação, controlo de contas correntes, Intrastat, IVA, controlo de inventário.</li>
+                    <li><strong>Logística:</strong> Gestão de compras e vendas, transportes e documentação aduaneira.</li>
+                    <li><strong>Marketing e Atendimento:</strong> Gestão comercial, prospeção de clientes, website e conteúdo gráfico.</li>
+                    <li><strong>Recursos Humanos:</strong> Processamento salarial, recrutamento e formação.</li>
+                </ul>
+            </div>
+            
+            <!-- Satfiel -->
+            <div class="experience-entry">
+                <div class="experience-header">
+                    <h3>Técnico Administrativo</h3>
+                    <span class="period">03/2021 — 08/2021</span>
+                </div>
+                <p class="experience-company">SATFIEL, LDA.</p>
+                <p class="experience-sector">Reparação de eletrodomésticos</p>
+                <ul class="experience-activities">
+                    <li><strong>Apoio administrativo:</strong> Faturação, aprovação de folhas de obra e controlo estatístico.</li>
+                    <li><strong>Gestão documental:</strong> Organização e arquivo de documentação administrativa.</li>
+                </ul>
+            </div>
+            
+            <!-- Altaroda -->
+            <div class="experience-entry">
+                <div class="experience-header">
+                    <h3>Técnico Administrativo e Logística</h3>
+                    <span class="period">01/2015 — 10/2015 | 05/2017 — 04/2021</span>
+                </div>
+                <p class="experience-company">ALTARODA, S.A.</p>
+                <p class="experience-sector">Equipamentos e consumíveis setor automóvel</p>
+                <ul class="experience-activities">
+                    <li><strong>Controlo de stocks:</strong> Gestão de encomendas, receção e expedição de mercadorias.</li>
+                    <li><strong>Gestão de reclamações:</strong> Processamento e resolução de reclamações de clientes.</li>
+                    <li><strong>Apoio administrativo:</strong> Documentação, traduções técnicas (inglês), auditorias ISO9001.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Habilitações Académicas -->
+        <section class="section">
+            <h2 class="section-title">Habilitações Académicas</h2>
+            <div class="education-grid">
+                <div class="education-item">
+                    <h4>Técnico Superior Profissional em Gestão e Negócio de PME</h4>
+                    <p class="institution">ESTG — Instituto Politécnico do Porto</p>
+                    <p class="details">Nível EQF/ISCED 5 | 2017-2019</p>
+                </div>
+                <div class="education-item">
+                    <h4>12.º Ano de Escolaridade</h4>
+                    <p class="institution">Escola Profissional de Arqueologia (Marco de Canaveses)</p>
+                    <p class="details">Curso Profissional de Assistente de Arqueólogo | Nível EQF/ISCED 4 | 2004-2007</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Formação Profissional -->
+        <section class="section">
+            <h2 class="section-title">Formação Profissional</h2>
+            <div class="training-list">
+                <div class="training-item">
+                    <span class="name">Linguagens de Programação — Java</span>
+                    <span class="hours">350h | 2025</span>
+                </div>
+                <div class="training-item">
+                    <span class="name">Contabilidade e Fiscalidade</span>
+                    <span class="hours">225h | 2014</span>
+                </div>
+                <div class="training-item">
+                    <span class="name">Formação de Técnicos de laboratório</span>
+                    <span class="hours">114h | 2024</span>
+                </div>
+                <div class="training-item">
+                    <span class="name">Economia Digital</span>
+                    <span class="hours">100h | 2018</span>
+                </div>
+                <div class="training-item">
+                    <span class="name">Certificado de Competências Pedagógicas</span>
+                    <span class="hours">90h | 2019</span>
+                </div>
+                <div class="training-item">
+                    <span class="name">Folha de Cálculo</span>
+                    <span class="hours">50h | 2025</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Competências Técnicas e Idiomas -->
+        <section class="section">
+            <h2 class="section-title">Competências Técnicas e Idiomas</h2>
+            <div class="skills-grid">
+                <div class="skills-box">
+                    <h4>Informática — Ótica do Utilizador</h4>
+                    <ul class="skills-list">
+                        <li>Microsoft Word, Excel, PowerPoint, Outlook</li>
+                        <li>Sistemas ERP (gestão integrada)</li>
+                        <li>Ferramentas de faturação e gestão documental</li>
+                        <li>Bases de dados e sistemas de informação</li>
+                        <li>Plataformas digitais e web</li>
+                    </ul>
+                </div>
+                <div class="skills-box">
+                    <h4>Idiomas</h4>
+                    <div class="languages-section">
+                        <div class="language-item">
+                            <strong>Inglês:</strong> B2 — Intermédio Avançado (escrito e oral)
+                        </div>
+                        <div class="language-item">
+                            <strong>Espanhol:</strong> A2 — Básico (conversação)
+                        </div>
+                        <p class="language-note">Experiência profissional em contexto internacional (Londres, Reino Unido)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Referências Profissionais -->
+        <section class="section">
+            <h2 class="section-title">Referências Profissionais</h2>
+            <div class="references-grid">
+                <div class="reference-item">
+                    <strong>Ms. Nema da Silva</strong>
+                    <p class="role">General Area Manager — Shaftesbury Hotels</p>
+                    <span>+44 7940 414 334</span>
+                </div>
+                <div class="reference-item">
+                    <strong>Vítor Rocha</strong>
+                    <p class="role">CEO — Administrador da Altaroda, S.A.</p>
+                    <span>+351 917 505 400</span>
+                </div>
+                <div class="reference-item">
+                    <strong>Filipe Magalhães</strong>
+                    <p class="role">Sócio-Gerente da Magasteel, Lda.</p>
+                    <span>+351 917 324 553</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Declaração -->
+        <div class="declaration">
+            Declaro, sob compromisso de honra, que todas as informações constantes neste currículo são verdadeiras.
+        </div>
+    </div>
+</body>
+</html>
