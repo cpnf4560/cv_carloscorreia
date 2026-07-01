@@ -29,6 +29,10 @@
 		ul{padding-left:18px}
 		.panel{border:1px solid #dde7ef;border-radius:12px;padding:14px;background:#fafcff}
 		.code{background:#f2f6fa;border:1px solid #d8e3ec;border-radius:8px;padding:10px;font-family:Consolas,monospace;font-size:13px;white-space:pre-wrap;word-break:break-word}
+		.gallery{margin-top:20px;display:grid;gap:14px;grid-template-columns:1fr}
+		.shot{border:1px solid #d8e3ec;border-radius:10px;background:#fff;overflow:hidden}
+		.shot img{display:block;width:100%;height:auto}
+		.shot figcaption{padding:10px 12px;font-size:13px;color:#3d5e77;background:#f6faff}
 		footer{margin:36px 0 18px;text-align:center;font-size:12px;color:#666}
 		footer a{color:var(--accent)}
 	</style>
@@ -90,6 +94,25 @@ python main.py exif
 python main.py batch_tools</div>
 			</section>
 		</div>
+
+		<section class="panel" aria-labelledby="shots-title" style="margin-top:20px;">
+			<h2 id="shots-title">Screenshots Ilustrativos</h2>
+			<p>Imagens conceptuais para demonstrar o aspeto da aplicacao em cada modulo principal.</p>
+			<div class="gallery">
+				<figure class="shot">
+					<img src="Imagens/gestor-fotos-duplicados.svg" alt="Ilustracao do modulo de deteccao de duplicados">
+					<figcaption>Modulo de duplicados: comparacao lado a lado e eliminacao em lote.</figcaption>
+				</figure>
+				<figure class="shot">
+					<img src="Imagens/gestor-fotos-exif.svg" alt="Ilustracao do editor de datas EXIF">
+					<figcaption>Editor EXIF: validacao de formato, pre-visualizacao e aplicacao em lote.</figcaption>
+				</figure>
+				<figure class="shot">
+					<img src="Imagens/gestor-fotos-batch.svg" alt="Ilustracao das ferramentas em lote">
+					<figcaption>Ferramentas em lote: renomear, redimensionar e organizar por data.</figcaption>
+				</figure>
+			</div>
+		</section>
 	</main>
 
 	<footer><p>&copy; 2026 Carlos Correia • <a href="cv-carlos-correia.html">CV</a></p></footer>
