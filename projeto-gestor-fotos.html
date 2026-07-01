@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Gestor de Fotos - Projeto | Carlos Correia</title>
+	<meta name="description" content="Gestor de Fotos: aplicacao desktop em Python para detetar duplicados, editar datas EXIF e executar operacoes em lote." />
+	<link rel="icon" type="image/png" href="Imagens/favicon.png" />
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	<style>
+		:root{--accent:#2c5f7c;--accent2:#4aa3d3;--bg:#eef3f8;--radius:16px}
+		*{box-sizing:border-box;margin:0;padding:0}
+		body{font-family:'Poppins','Segoe UI',Tahoma,sans-serif;background:var(--bg);color:#222;line-height:1.55}
+		header{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:40px 28px 80px;position:relative}
+		.top-links{position:absolute;top:12px;right:14px;display:flex;gap:8px;z-index:10}
+		.top-links a{font-size:11px;padding:6px 10px;background:rgba(255,255,255,.85);color:var(--accent);border-radius:6px;text-decoration:none;border:1px solid #d0dee7;backdrop-filter:blur(4px)}
+		.top-links a:hover{background:var(--accent2);color:#fff}
+		h1{font-size:38px}
+		.badge{display:inline-block;margin-top:10px;background:#fff;color:var(--accent);border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700}
+		.hero{max-width:1100px;margin:-52px auto 20px;background:#fff;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.12);overflow:hidden}
+		.hero figure{margin:0;aspect-ratio:16/9;background:linear-gradient(135deg,#dbe5ee,#c3d3e2);display:flex;align-items:center;justify-content:center;position:relative;color:var(--accent);font-size:34px;font-weight:700;letter-spacing:.5px}
+		.hero .quick{position:absolute;top:10px;right:10px;display:flex;gap:6px}
+		.hero .quick a{background:rgba(255,255,255,.95);color:var(--accent);padding:6px 10px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700;border:1px solid rgba(0,0,0,.25);box-shadow:0 2px 6px rgba(0,0,0,.25)}
+		main{max-width:1100px;margin:0 auto 70px;background:#fff;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.12);padding:26px 26px}
+		.grid{display:grid;gap:26px;grid-template-columns:1.2fr .8fr}
+		@media(max-width:900px){.grid{grid-template-columns:1fr}}
+		h2{font-size:20px;color:var(--accent);margin:6px 0 12px}
+		p{margin:0 0 10px;text-align:justify;hyphens:auto}
+		ul{padding-left:18px}
+		.panel{border:1px solid #dde7ef;border-radius:12px;padding:14px;background:#fafcff}
+		.code{background:#f2f6fa;border:1px solid #d8e3ec;border-radius:8px;padding:10px;font-family:Consolas,monospace;font-size:13px;white-space:pre-wrap;word-break:break-word}
+		footer{margin:36px 0 18px;text-align:center;font-size:12px;color:#666}
+		footer a{color:var(--accent)}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="top-links" aria-label="Navegacao"><a href="cv-carlos-correia.html">&larr; CV</a><a href="projetos_programacao.html">Projetos</a></div>
+		<h1>Gestor de Fotos</h1>
+		<span class="badge">Python 3.8+ • Tkinter • Pillow • imagehash</span>
+	</header>
+
+	<section class="hero" aria-label="Capa do projeto">
+		<figure>
+			<div class="quick"><a href="#execucao">Como executar</a><a href="#funcionalidades">Funcionalidades</a></div>
+			Gestor de Fotos
+		</figure>
+	</section>
+
+	<main role="main">
+		<div class="grid">
+			<section class="panel" aria-labelledby="desc-title">
+				<h2 id="desc-title">Descricao</h2>
+				<p>Aplicacao desktop em Python para organizacao de bibliotecas fotograficas. O projeto junta deteccao de imagens repetidas, edicao de data EXIF e ferramentas em lote numa interface unica e simples de usar.</p>
+				<p>O objetivo e reduzir tarefas manuais e permitir que o utilizador valide alteracoes com pre-visualizacao antes de executar mudancas em ficheiros.</p>
+			</section>
+
+			<aside class="panel" aria-labelledby="stack-title">
+				<h2 id="stack-title">Stack e Estado</h2>
+				<ul>
+					<li>Python 3.8+</li>
+					<li>Tkinter (GUI desktop)</li>
+					<li>Pillow, imagehash, OpenCV</li>
+					<li>Status: concluido</li>
+					<li>Licenca: uso pessoal e comercial</li>
+				</ul>
+			</aside>
+
+			<section class="panel" id="funcionalidades" aria-labelledby="feat-title">
+				<h2 id="feat-title">Funcionalidades Principais</h2>
+				<ul>
+					<li><strong>Duplicados:</strong> deteccao por MD5 (exatos) e perceptual hash (similares).</li>
+					<li><strong>Agrupamento:</strong> grupos por similaridade com threshold configurado no codigo.</li>
+					<li><strong>Pre-visualizacao:</strong> comparacao lado a lado antes de eliminar.</li>
+					<li><strong>Datas:</strong> leitura e edicao de datas EXIF e timestamps de ficheiro.</li>
+					<li><strong>Lote:</strong> renomeacao, redimensionamento e organizacao por data.</li>
+					<li><strong>Performance:</strong> cache local para acelerar rescans.</li>
+				</ul>
+			</section>
+
+			<section class="panel" id="execucao" aria-labelledby="run-title">
+				<h2 id="run-title">Como Executar</h2>
+				<p>Instalacao de dependencias:</p>
+				<div class="code">pip install -r requirements.txt</div>
+				<p style="margin-top:10px">Arrancar menu principal:</p>
+				<div class="code">python main.py</div>
+				<p style="margin-top:10px">Modos diretos:</p>
+				<div class="code">python main.py duplicates
+python main.py exif
+python main.py batch_tools</div>
+			</section>
+		</div>
+	</main>
+
+	<footer><p>&copy; 2026 Carlos Correia • <a href="cv-carlos-correia.html">CV</a></p></footer>
+</body>
+</html>
